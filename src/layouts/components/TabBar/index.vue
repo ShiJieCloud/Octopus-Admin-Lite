@@ -1,9 +1,11 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
-  <router-view />
+  <div>TabBar</div>
 </template>
 
 <style scoped lang="scss">
+
 </style>
