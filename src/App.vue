@@ -1,10 +1,9 @@
 <script setup lang="ts">
+const title = import.meta.env.VITE_APP_TITLE
 </script>
 
 <template>
-  <div>
-    首页
-  </div>
+  <h1>{{ title }}</h1>
 </template>
 
 <style scoped>
