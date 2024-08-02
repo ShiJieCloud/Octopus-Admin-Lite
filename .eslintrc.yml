@@ -1,0 +1,37 @@
+#https://zh-hans.eslint.org/
+root: true
+env:
+  browser: true
+  node: true
+extends:
+  - 'plugin:vue/vue3-essential'
+  - 'eslint:recommended'
+  - '@vue/eslint-config-typescript'
+  - '@vue/eslint-config-prettier/skip-formatting'
+parserOptions:
+  ecmaVersion: latest
+  sourceType: module
+  ecmaFeatures:
+    jsx: true
+# https://zh-hans.eslint.org/docs/latest/use/configure/rules
+rules:
+  quotes:
+    - error
+    - single
+  semi:
+    - error
+    - never
+  no-console: warn
+  no-unused-vars: error
+  comma-dangle:
+    - error
+    - never
+  prefer-const: error
+  no-const-assign: error
+  arrow-spacing:
+    - error
+    - before: true
+      after: true
+  no-multiple-empty-lines:
+    - error
+    - max: 1
