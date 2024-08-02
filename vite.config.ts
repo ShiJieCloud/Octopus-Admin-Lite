@@ -30,6 +30,15 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       }
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          javaScriptEnabled: true,
+          // 向全局 scss 文件内容注入变量
+          additionalData: '@import "@/assets/styles/variable.scss";'
+        }
+      }
     }
   }
 })
