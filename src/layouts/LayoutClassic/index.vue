@@ -25,7 +25,7 @@ const locales = reactive([
   <div class="layout-container">
     <el-container>
       <el-aside>
-        <Logo />
+        <Logo class="os-logo"/>
         <Menu class="menu-classic" />
       </el-aside>
       <el-container>
@@ -122,6 +122,11 @@ const locales = reactive([
     border-color: var(--el-border-color-light);
     width: var(--os-layout-aside-width);
 
+    .os-logo{
+      @apply border-b border-solid overflow-hidden;
+      border-color: var(--el-border-color-light);
+    }
+    
     .menu-classic {
       height: calc(100vh - var(--os-layout-logo-height));
     }
