@@ -59,6 +59,10 @@ const props = defineProps({
 
   .os-menu{
     @apply border-0;
+
+    &.el-menu--horizontal{
+      height: var(--os-layout-logo-height);
+    }
   }
 }
 </style>

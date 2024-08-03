@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import Footer from '@/layouts/components/Footer/index.vue'
-import Menu from '@/layouts/components/Menu/index.vue'
+
 import Logo from '@/layouts/components/Logo/index.vue'
 import Main from '@/layouts/components/Main/index.vue'
 import TabBar from '@/layouts/components/TabBar/index.vue'
-import Breadcrumb from '@/layouts/components/Breadcrumb/index.vue'
-import { reactive } from 'vue'
-
+import Footer from '@/layouts/components/Footer/index.vue'
+import Menu from '@/layouts/components/Menu/index.vue'
 import { fullScreen } from '@/utils/FullScreen'
+import { reactive } from 'vue'
 
 const locales = reactive([
   {
@@ -24,21 +23,10 @@ const locales = reactive([
 <template>
   <div class="layout-container">
     <el-container>
-      <el-aside>
-        <Logo class="os-logo"/>
-        <Menu class="menu-classic" />
-      </el-aside>
       <el-container>
         <el-header>
-          <div class="header-content">
-            <!-- 折叠按钮 -->
-            <svg-icon
-              class="fold-expand-button"
-              name="Fold"
-            />
-            <!-- 面包屑 -->
-            <Breadcrumb />
-          </div>
+          <Logo />
+          <Menu mode="horizontal" class="menu-horizontal" />
           <div class="header-menu">
             <!-- 语言转换 -->
             <el-dropdown :hide-on-click="false">
@@ -117,19 +105,8 @@ const locales = reactive([
   @apply w-screen h-screen;
 
   .el-aside {
-    @apply h-full;
-    @apply border-r border-solid overflow-hidden;
-    border-color: var(--el-border-color-light);
+    @apply bg-amber-300 h-full;
     width: var(--os-layout-aside-width);
-
-    .os-logo{
-      @apply border-b border-solid overflow-hidden;
-      border-color: var(--el-border-color-light);
-    }
-
-    .menu-classic {
-      height: calc(100vh - var(--os-layout-logo-height));
-    }
   }
 
   .el-container {
@@ -140,21 +117,17 @@ const locales = reactive([
     }
 
     .el-header {
-      @apply flex items-center justify-between;
+      @apply w-full pl-0 pr-3 flex;
+      height: var(--os-layout-header-height);
       @apply border-b border-solid overflow-hidden;
       border-color: var(--el-border-color-light);
-      height: var(--os-layout-header-height);
 
-      .header-content {
-        @apply flex items-center gap-5;
-
-        .fold-expand-button {
-          @apply cursor-pointer;
-          @apply size-6;
-        }
+      .menu-horizontal{
+        width: calc(100vw - var(--os-layout-aside-width) - var(--os-layout-header-menu-width));
+        height: calc(var(--os-layout-header-height) - 20px);
       }
 
-      .header-menu {
+      .header-menu{
         @apply flex items-center justify-between;
         width: var(--os-layout-header-menu-width);
       }
@@ -170,4 +143,5 @@ const locales = reactive([
     }
   }
 }
+
 </style>
