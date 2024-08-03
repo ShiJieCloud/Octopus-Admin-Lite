@@ -126,7 +126,7 @@ const locales = reactive([
       @apply border-b border-solid overflow-hidden;
       border-color: var(--el-border-color-light);
     }
-    
+
     .menu-classic {
       height: calc(100vh - var(--os-layout-logo-height));
     }
@@ -164,7 +164,6 @@ const locales = reactive([
     }
 
     .el-footer {
-      @apply bg-amber-700;
       height: var(--os-layout-footer-height);
     }
   }
