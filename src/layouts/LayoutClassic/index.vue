@@ -70,8 +70,9 @@ const locales = reactive([
               <svg-icon class="cursor-pointer" name="FullScreen" @click="fullScreen" />
             </el-tooltip>
 
+            <!-- 用户信息 -->
             <el-dropdown>
-              <div class="flex items-center space-x-2">
+              <div class="flex items-center gap-2">
                 <el-tag type="primary">Admin</el-tag>
                 <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
               </div>
@@ -135,6 +136,8 @@ const locales = reactive([
 
     .el-header {
       @apply flex items-center justify-between;
+      @apply border-b border-solid overflow-hidden;
+      border-color: var(--el-border-color-light);
       height: var(--os-layout-header-height);
 
       .header-content {
