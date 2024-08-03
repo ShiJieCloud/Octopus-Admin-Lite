@@ -160,7 +160,8 @@ const locales = reactive([
     }
 
     .el-main {
-      @apply bg-amber-600 h-full;
+      @apply h-full;
+      height: calc(100% - var(--os-layout-tab-height))
     }
 
     .el-footer {
