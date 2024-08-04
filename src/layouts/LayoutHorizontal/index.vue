@@ -60,7 +60,7 @@ const locales = reactive([
 
             <!-- 用户信息 -->
             <el-dropdown>
-              <div class="flex items-center gap-2">
+              <div class="flex-gap-2">
                 <el-tag type="primary">Admin</el-tag>
                 <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
               </div>
@@ -68,7 +68,7 @@ const locales = reactive([
                 <el-dropdown-menu>
                   <el-dropdown-item command="profile">
                     <template #default>
-                      <div class="flex items-center gap-2">
+                      <div class="flex-gap-2">
                         <svg-icon name="User" />
                         <span>个人中心</span>
                       </div>
@@ -76,7 +76,7 @@ const locales = reactive([
                   </el-dropdown-item>
                   <el-dropdown-item command="logout">
                     <template #default>
-                      <div class="flex items-center gap-2">
+                      <div class="flex-gap-2">
                         <svg-icon name="Logout" />
                         <span>退出登录</span>
                       </div>
@@ -86,7 +86,6 @@ const locales = reactive([
               </template>
             </el-dropdown>
           </div>
-
         </el-header>
         <tab-bar class="tab-container" />
         <el-main>
@@ -130,6 +129,10 @@ const locales = reactive([
       .header-menu{
         @apply flex items-center justify-between;
         width: var(--os-layout-header-menu-width);
+
+        .flex-gap-2 {
+          @apply flex items-center gap-2;
+        }
       }
     }
 
@@ -143,5 +146,4 @@ const locales = reactive([
     }
   }
 }
-
 </style>
