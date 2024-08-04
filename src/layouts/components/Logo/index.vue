@@ -5,7 +5,7 @@ const app_title = import.meta.env.VITE_APP_TITLE
 
 <template>
   <div class="logo-container">
-    <img src="@/assets/images/logo.svg" alt="logo" />
+    <svg-icon class="size-8" name="logo" />
     <span class="logo-title">{{ app_title }}</span>
   </div>
 </template>
@@ -15,10 +15,6 @@ const app_title = import.meta.env.VITE_APP_TITLE
   @apply flex items-center justify-center;
   height: var(--os-layout-logo-height);
   width: var(--os-layout-aside-width);
-
-  img {
-    @apply size-8;
-  }
 
   .logo-title {
     @apply text-lg font-bold subpixel-antialiased;

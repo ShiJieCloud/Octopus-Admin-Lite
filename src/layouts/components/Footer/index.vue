@@ -6,7 +6,7 @@ const app_title = import.meta.env.VITE_APP_TITLE
   <div class="footer-container">
     <!-- 左侧：公司名称或标志 -->
     <div class="flex-content">
-      <img src="@/assets/images/logo.svg" alt="logo" />
+      <svg-icon class="size-6" name="logo" />
       <span class="logo-title">{{ app_title }}</span>
     </div>
     <!-- 中间：导航链接 -->
@@ -38,10 +38,6 @@ const app_title = import.meta.env.VITE_APP_TITLE
       @apply font-bold subpixel-antialiased;
       @apply bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500;
     }
-  }
-
-  img{
-    @apply size-6;
   }
 }
 </style>
