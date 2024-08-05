@@ -17,25 +17,25 @@ const app_title = import.meta.env.VITE_APP_TITLE
       <a href="#terms-of-service">服务条款</a>
     </div>
     <!-- 右侧：版权信息 -->
-    <div class="text-right text-sm">&copy; 2024 Octopus. 保留所有权利.</div>
+    <div class="text-right">&copy; 2024 Octopus. 保留所有权利.</div>
   </div>
 </template>
 
 <style scoped lang="postcss">
 .footer-container{
   @apply flex items-center justify-between w-full;
-  @apply select-none;
+  @apply select-none text-xs;
   height: var(--os-layout-footer-height);
 
   .flex-content{
     @apply flex items-center gap-2;
 
     &.service-content{
-      @apply flex justify-center gap-1 text-sm text-gray-400;
+      @apply flex justify-center gap-1  text-gray-400;
     }
 
     .logo-title {
-      @apply font-bold subpixel-antialiased;
+      @apply font-bold subpixel-antialiased text-sm;
       @apply bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500;
     }
   }
