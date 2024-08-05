@@ -13,6 +13,16 @@
 
 }
 
+/* scroll bar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--el-border-color-darker);
+  border-radius: 20px;
+}
+
 // 灰色主题
 html[data-theme='gray'] {
   filter: grayscale(1);
