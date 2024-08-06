@@ -11,7 +11,7 @@ const app_title = import.meta.env.VITE_APP_TITLE
     </div>
     <!-- 中间：导航链接 -->
     <div class="flex-content service-content">
-      <RouterLink to="about">关于我们</RouterLink>
+      <a href="about">关于我们</a>
       <a href="#contact">联系我们</a>
       <a href="#privacy-policy">隐私政策</a>
       <a href="#terms-of-service">服务条款</a>

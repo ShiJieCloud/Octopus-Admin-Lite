@@ -2,6 +2,11 @@
 import { type Component, computed } from 'vue'
 import LayoutClassic from '@/layouts/LayoutClassic/index.vue'
 import LayoutHorizontal from '@/layouts/LayoutHorizontal/index.vue'
+import Theme from '@/layouts/components/Theme/index.vue'
+
+import { useThemeStore } from '@/stores/modules/theme'
+
+const { themeConfig } = useThemeStore()
 
 // 定义布局模式与对应的组件类型
 const layoutMode: Record<string, Component> = {
@@ -10,12 +15,13 @@ const layoutMode: Record<string, Component> = {
 }
 
 // 计算属性，根据具体逻辑返回所选布局的组件
-const mode = computed(() => layoutMode['classic'])
+const mode = computed(() => layoutMode[themeConfig.layoutMode])
 </script>
 
 <template>
   <!-- 根据 mode 的值渲染不同的布局样式 -->
   <component :is="mode" />
+  <Theme />
 </template>
 
 <style scoped lang="postcss">

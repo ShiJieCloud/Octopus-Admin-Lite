@@ -1,13 +1,15 @@
 <script setup lang="ts">
-
+import { useThemeStore } from '@/stores/modules/theme'
 import { ref } from 'vue'
+
+const { themeConfig } = useThemeStore()
 
 const theme = ref(true)
 </script>
 
 <template>
   <div>
-    <el-drawer v-model="theme" size="300">
+    <el-drawer v-model="themeConfig.showThemeConfig" size="300">
       <template #header="{ titleId }">
         <span :id="titleId" class="theme-header"> 主题配置 </span>
       </template>
