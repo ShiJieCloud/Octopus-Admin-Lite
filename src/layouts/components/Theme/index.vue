@@ -2,7 +2,7 @@
 import { useThemeStore } from '@/stores/modules/theme'
 import { ref } from 'vue'
 
-const { themeConfig } = useThemeStore()
+const { themeConfig, changeThemeColor } = useThemeStore()
 
 const theme = ref(true)
 </script>
@@ -18,19 +18,17 @@ const theme = ref(true)
         <div class="mr-4">
           <el-divider>布局样式</el-divider>
           <div class="layout-box">
-            <el-tooltip
-              effect="dark"
-              content="经典布局"
-              placement="top"
-              :show-after="200"
-            >
-              <div :class="['layout-item layout-classic', { 'is-active': 'classic' }]">
+            <el-tooltip effect="dark" content="经典布局" placement="top" :show-after="200">
+              <div
+                :class="['layout-item layout-classic', { 'is-active': themeConfig.layoutMode == 'classic' }]"
+                @click="themeConfig.layoutMode='classic'"
+              >
                 <div class="layout-dark"></div>
                 <div class="layout-container">
                   <div class="layout-light"></div>
                   <div class="layout-content"></div>
                 </div>
-                <svg-icon class="select-layout" name="About" v-if="'classic'" />
+                <svg-icon class="select-layout" name="About" v-if="themeConfig.layoutMode == 'classic'" />
               </div>
             </el-tooltip>
             <el-tooltip
@@ -39,10 +37,13 @@ const theme = ref(true)
               placement="top"
               :show-after="200"
             >
-              <div :class="['layout-item layout-transverse', { 'is-active': 'horizontal' }]">
+              <div
+                :class="['layout-item layout-transverse', { 'is-active': themeConfig.layoutMode == 'horizontal' }]"
+                @click="themeConfig.layoutMode='horizontal'"
+              >
                 <div class="layout-dark"></div>
                 <div class="layout-content"></div>
-                <svg-icon class="select-layout" name="About" v-if="'horizontal'" />
+                <svg-icon class="select-layout" name="About" v-if=" themeConfig.layoutMode == 'horizontal'" />
               </div>
             </el-tooltip>
           </div>
@@ -51,12 +52,17 @@ const theme = ref(true)
           <div class="switch-container">
             <div class="switch-box">
               <div class="switch-title">
-                <span>布局</span>
-                <el-tooltip content="布局" placement="top">
+                <span>主题颜色</span>
+                <el-tooltip content="主题颜色" placement="top">
                   <svg-icon class="size-4" name="About"></svg-icon>
                 </el-tooltip>
               </div>
-              <el-color-picker show-alpha />
+              <el-color-picker
+                color-format="hex"
+                v-model="themeConfig.themePrimaryColor"
+                :predefine="themeConfig.predefineColors"
+                @change="changeThemeColor"
+              />
             </div>
             <div class="switch-box">
               <div class="switch-title">
@@ -65,7 +71,7 @@ const theme = ref(true)
                   <svg-icon class="size-4" name="About"></svg-icon>
                 </el-tooltip>
               </div>
-              <el-switch v-model="theme" inline-prompt />
+              <el-switch v-model="themeConfig.darkThemeEnabled" />
             </div>
           </div>
 
@@ -102,7 +108,9 @@ const theme = ref(true)
 }
 
 :deep(.el-drawer__header) {
-  @apply text-gray-700 px-5 py-0 h-12 border-b-slate-200 border-b-2 border-solid m-0;
+  @apply px-5 py-0 h-12 border-b-2 border-solid m-0;
+  color: var(--el-text-color-regular);
+  border-color: var(--el-border-color-light);
 }
 
 :deep(.el-drawer__title) {
@@ -151,7 +159,7 @@ const theme = ref(true)
       position: absolute;
       right: 10px;
       bottom: 10px;
-      color: var(--el-color-primary);
+      fill: var(--el-color-primary);
       transition: all 0.2s;
     }
 
@@ -164,7 +172,7 @@ const theme = ref(true)
     box-shadow: 0 0 0 2px var(--el-color-primary) !important;
   }
 
-  .layout-vertical {
+  .layout-classic {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
@@ -189,31 +197,6 @@ const theme = ref(true)
     }
   }
 
-  .layout-classic {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 20px;
-
-    .layout-dark {
-      height: 22%;
-    }
-
-    .layout-container {
-      display: flex;
-      justify-content: space-between;
-      height: 70%;
-
-      .layout-light {
-        width: 20%;
-      }
-
-      .layout-content {
-        width: 70%;
-      }
-    }
-  }
-
   .layout-transverse {
     display: flex;
     flex-direction: column;
@@ -226,24 +209,6 @@ const theme = ref(true)
 
     .layout-content {
       height: 67%;
-    }
-  }
-
-  .layout-columns {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-
-    .layout-dark {
-      width: 14%;
-    }
-
-    .layout-light {
-      width: 17%;
-    }
-
-    .layout-content {
-      width: 55%;
     }
   }
 }

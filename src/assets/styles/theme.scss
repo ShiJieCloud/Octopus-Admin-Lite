@@ -11,6 +11,9 @@
   --os-layout-footer-height: 40px; // 底部高度
   --os-layout-tab-height: 40px; // 底部高度
 
+  &.dark {
+fill: var(--el-fill-color-light);
+  }
 }
 
 /* scroll bar */
