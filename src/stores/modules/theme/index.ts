@@ -13,7 +13,7 @@ export const useThemeStore = defineStore(
       darkThemeEnabled: false,
       layoutMode: 'classic',
       themePrimaryColor: '#409eff',
-      predefineColors:[]
+      predefineColors: ['#409eff']
     })
 
     // 切换显示状态的方法
@@ -21,18 +21,20 @@ export const useThemeStore = defineStore(
       themeConfig.showThemeConfig = !themeConfig.showThemeConfig
     }
 
+    // 黑暗主题切换
     watch(() => themeConfig.darkThemeEnabled, () => {
       const html = document.documentElement as HTMLElement
       if (themeConfig.darkThemeEnabled) {
         html.setAttribute('class', 'dark')
-      }else {
+      } else {
         html.removeAttribute('class')
       }
-      // eslint-disable-next-line no-self-assign
       changeThemeColor(themeConfig.themePrimaryColor)
     })
 
+    // 添加预定义颜色
     function addPredefineColor(color) {
+      console.log('color', color)
       const predefineColors = themeConfig.predefineColors
       // 查找元素的索引
       const index = predefineColors.indexOf(color)
@@ -49,10 +51,11 @@ export const useThemeStore = defineStore(
 
     // 修改主题颜色
     const changeThemeColor = (color) => {
-      if (!themeConfig.themePrimaryColor) {
-        themeConfig.themePrimaryColor = '#409eff'
-        ElMessage({ type: 'success', message: `主题颜色已重置为 ${themeConfig.themePrimaryColor}` })
+      if (!color) {
+        color = '#409eff'
+        ElMessage({ type: 'success', message: `主题颜色已重置为 ${color}` })
       }
+      themeConfig.themePrimaryColor = color
       addPredefineColor(color)
       // 计算主题颜色变化
       document.documentElement.style.setProperty('--el-color-primary', color)
