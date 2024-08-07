@@ -17,5 +17,6 @@
   flex-wrap: nowrap; /* 防止换行 */
   overflow: hidden; /* 横向滚动溢出处理 */
   padding-right: 12px;
+  line-height: normal;
 }
 </style>
