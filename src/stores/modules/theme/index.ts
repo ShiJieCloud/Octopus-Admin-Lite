@@ -11,6 +11,7 @@ export const useThemeStore = defineStore(
     const themeConfig = reactive<ThemeConfig>({
       showThemeConfig: false,
       darkThemeEnabled: false,
+      grayThemeEnabled: false,
       layoutMode: 'classic',
       themePrimaryColor: '#409eff',
       predefineColors: ['#409eff']
@@ -32,8 +33,16 @@ export const useThemeStore = defineStore(
       changeThemeColor(themeConfig.themePrimaryColor)
     })
 
+    watch(() => themeConfig.grayThemeEnabled,() => {
+      if (themeConfig.grayThemeEnabled) {
+        document.documentElement.dataset.theme = 'gray'
+      } else {
+        document.documentElement.dataset.theme = ''
+      }
+    })
+
     // 添加预定义颜色
-    function addPredefineColor(color) {
+    function addPredefineColor(color:string) {
       console.log('color', color)
       const predefineColors = themeConfig.predefineColors
       // 查找元素的索引
@@ -50,7 +59,7 @@ export const useThemeStore = defineStore(
     }
 
     // 修改主题颜色
-    const changeThemeColor = (color) => {
+    const changeThemeColor = (color:string ) => {
       if (!color) {
         color = '#409eff'
         ElMessage({ type: 'success', message: `主题颜色已重置为 ${color}` })
