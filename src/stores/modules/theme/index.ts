@@ -62,9 +62,8 @@ export const useThemeStore = defineStore(
     const changeThemeColor = (color:string ) => {
       if (!color) {
         color = '#409eff'
-        ElMessage({ type: 'success', message: `主题颜色已重置为 ${color}` })
+        ElMessage({ type: 'success', message: '主题颜色已重置' })
       }
-      themeConfig.themePrimaryColor = color
       addPredefineColor(color)
       // 计算主题颜色变化
       document.documentElement.style.setProperty('--el-color-primary', color)
