@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { useThemeStore } from '@/stores/modules/theme'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const { themeConfig, changeThemeColor } = useThemeStore()
 
 const theme = ref(true)
+onMounted(() => {
+  changeThemeColor(themeConfig.themePrimaryColor)
+})
+
 </script>
 
 <template>
@@ -72,6 +76,15 @@ const theme = ref(true)
                 </el-tooltip>
               </div>
               <el-switch v-model="themeConfig.darkThemeEnabled" />
+            </div>
+            <div class="switch-box">
+              <div class="switch-title">
+                <span>灰色模式</span>
+                <el-tooltip content="灰色模式" placement="top">
+                  <svg-icon class="size-4" name="About"></svg-icon>
+                </el-tooltip>
+              </div>
+              <el-switch v-model="themeConfig.grayThemeEnabled" />
             </div>
           </div>
 
