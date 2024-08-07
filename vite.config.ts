@@ -17,7 +17,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 
   return {
     root, //项目根目录
-    base: viteEnv.VITE_BASE_URL,
+    base: 'Octopus-Admin-Lite',
     server: {
       host: '0.0.0.0', //指定服务器主机地址
       port: viteEnv.VITE_PORT, //指定开发服务器端口
