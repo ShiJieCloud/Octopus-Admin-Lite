@@ -15,14 +15,11 @@ interface SvgProps {
 
 const props = withDefaults(defineProps<SvgProps>(), {
   prefix: 'icon',
-  iconClass: () => 'size-5 icon-fill'
+  iconClass: () => 'size-5'
 })
 
 const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 </script>
 
 <style scoped lang="scss">
-.icon-fill{
-  fill: var(--el-text-color-primary)
-}
 </style>
