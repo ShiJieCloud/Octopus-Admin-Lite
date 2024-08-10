@@ -2,20 +2,18 @@
 import { type Component, computed } from 'vue'
 import LayoutClassic from '@/layouts/LayoutClassic/index.vue'
 import LayoutHorizontal from '@/layouts/LayoutHorizontal/index.vue'
+import LayoutResponsive from '@/layouts/LayoutResponsive/index.vue'
 import Theme from '@/layouts/components/Theme/index.vue'
-
-import { useThemeStore } from '@/stores/modules/theme'
-
-const { themeConfig } = useThemeStore()
 
 // 定义布局模式与对应的组件类型
 const layoutMode: Record<string, Component> = {
   classic: LayoutClassic,   // 经典布局
-  horizontal: LayoutHorizontal  // 横向布局
+  horizontal: LayoutHorizontal,  // 横向布局
+  responsive: LayoutResponsive  // 响应式布局
 }
 
 // 计算属性，根据具体逻辑返回所选布局的组件
-const mode = computed(() => layoutMode[themeConfig.layoutMode])
+const mode = computed(() => layoutMode['responsive'])
 </script>
 
 <template>

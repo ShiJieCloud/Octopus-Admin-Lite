@@ -11,8 +11,12 @@
   --os-layout-footer-height: 40px; // 底部高度
   --os-layout-tab-height: 40px; // 底部高度
 
+  --bg-color-soft: #fafafa;
+  --bg-color-mute: #f2f2f2;
+
   &.dark {
-fill: var(--el-fill-color-light);
+    fill: var(--el-fill-color-light);
+    --bg-color-soft: #242424;
   }
 }
 

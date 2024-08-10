@@ -6,15 +6,15 @@ const app_title = import.meta.env.VITE_APP_TITLE
 <template>
   <div class="logo-container">
     <svg-icon class="size-8" name="logo" />
-    <span class="logo-title">{{ app_title }}</span>
+    <span class="logo-title hidden md:block">{{ app_title }}</span>
   </div>
 </template>
 
 <style scoped lang="postcss">
 .logo-container {
-  @apply flex items-center justify-center;
+  @apply flex items-center;
   height: var(--os-layout-logo-height);
-  width: var(--os-layout-aside-width);
+  //width: var(--os-layout-aside-width);
 
   .logo-title {
     @apply text-lg font-bold subpixel-antialiased;

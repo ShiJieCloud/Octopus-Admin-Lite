@@ -40,3 +40,27 @@ pnpm build
 ```sh
 pnpm lint
 ```
+
+# tailwindcss 
+
+## 响应式设计
+
+常见设备分辨率，默认有五个断点：
+
+| 断点前缀 | 最小宽度 | CSS                                  | 适用       |
+| -------- | -------- | ------------------------------------ | ---------- |
+| `sm`     | 640px    | `@media (min-width: 640px) { ... }`  | 手机       |
+| `md`     | 768px    | `@media (min-width: 768px) { ... }`  | 平板       |
+| `lg`     | 1024px   | `@media (min-width: 1024px) { ... }` | 小型桌面   |
+| `xl`     | 1280px   | `@media (min-width: 1280px) { ... }` | 大型桌面   |
+| `2xl`    | 1536px   | `@media (min-width: 1536px) { ... }` | 超大型桌面 |
+
+## 间距
+
+## 常用布局
+
+- flex 布局
+  ```css
+  display: flex;
+  ```
+- grid 布局
