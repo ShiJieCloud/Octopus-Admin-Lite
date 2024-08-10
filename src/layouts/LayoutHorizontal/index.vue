@@ -120,7 +120,7 @@ const locales = reactive([
     }
 
     .el-header {
-      @apply w-full pl-0 pr-3 flex;
+      @apply w-full pl-2 pr-2 flex;
       height: var(--os-layout-header-height);
       @apply border-b border-solid overflow-hidden;
       border-color: var(--el-border-color-light);

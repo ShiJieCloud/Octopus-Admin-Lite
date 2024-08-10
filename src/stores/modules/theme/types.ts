@@ -1,4 +1,4 @@
-export type LayoutMode = 'classic' | 'horizontal'
+export type LayoutMode = 'classic' | 'horizontal' | 'responsive'
 // 主题配置
 export interface ThemeConfig {
   showThemeConfig: boolean,
