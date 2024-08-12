@@ -1,27 +1,14 @@
 <script setup lang="ts">
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-
-const props = defineProps({
-  mode: {
-    type: String,
-    default: 'vertical'
-  }
-})
-
+// 使用 props 来控制 `mode` 属性，切换菜单的显示模式（vertical | horizontal）
+const props = defineProps<{
+  mode?: 'vertical' | 'horizontal'
+}>()
 </script>
-<!--vertical horizontal-->
+
 <template>
   <div class="menu-container">
     <el-menu
-      default-active="2"
       class="os-menu"
-      @open="handleOpen"
-      @close="handleClose"
       :mode="props.mode"
     >
       <el-sub-menu index="1">
