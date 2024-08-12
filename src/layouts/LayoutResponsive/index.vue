@@ -19,7 +19,7 @@ const translateShow = ref(false)
     <el-container>
       <el-header class="flex items-center justify-between">
         <div class="h-full flex items-center gap-2">
-          <svg-icon width="30px" height="30px" name="MenuTree" @click="menuDrawer = !menuDrawer" />
+          <svg-icon width="30px" height="30px" name="menu" @click="menuDrawer = !menuDrawer" />
           <Logo />
         </div>
         <div class="header-menu">
@@ -89,7 +89,7 @@ const translateShow = ref(false)
     @apply h-full w-full;
 
     .el-header {
-      @apply w-full flex;
+      @apply w-full flex pl-2;
       height: var(--os-layout-header-height);
       @apply border-b border-solid overflow-hidden;
       border-color: var(--el-border-color-light);
