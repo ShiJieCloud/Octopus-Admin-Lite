@@ -24,7 +24,7 @@ const translateShow = ref(false)
         </div>
         <div class="header-menu">
           <!-- 搜索按钮 -->
-          <svg-icon width="24px" height="24px" class="cursor-pointer" name="Search" />
+          <svg-icon width="28px" height="28px" class="cursor-pointer" name="Search" />
 
           <!-- 用户信息 -->
           <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
