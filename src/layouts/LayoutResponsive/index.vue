@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import Logo from '@/layouts/components/Logo/index.vue'
 import Main from '@/layouts/components/Main/index.vue'
 import Menu from '@/layouts/components/Menu/index.vue'
@@ -30,6 +29,7 @@ const translateShow = ref(false)
           <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
                      @click="navDrawer = !navDrawer" />
 
+          <!-- 导航信息 -->
           <el-drawer v-model="navDrawer" size="100%">
             <template #header>
               <Logo />
@@ -42,6 +42,7 @@ const translateShow = ref(false)
                     翻译
                     <svg-icon name="Earth"></svg-icon>
                   </span>
+
                 <!-- 语言列表 -->
                 <transition name="fade">
                   <div v-show="translateShow" id="language-list" class="language-list mt-2">
@@ -49,7 +50,6 @@ const translateShow = ref(false)
                       <li class="p-2">英语</li>
                       <li class="p-2">中文</li>
                       <li class="p-2">西班牙语</li>
-                      <!-- 添加更多语言 -->
                     </ul>
                   </div>
                 </transition>
@@ -70,6 +70,8 @@ const translateShow = ref(false)
         <Main />
       </el-main>
     </el-container>
+
+    <!-- 菜单组件 -->
     <el-drawer
       v-model="menuDrawer"
       direction="ltr"
@@ -78,7 +80,6 @@ const translateShow = ref(false)
       <Menu />
     </el-drawer>
   </div>
-
 </template>
 
 <style scoped lang="postcss">

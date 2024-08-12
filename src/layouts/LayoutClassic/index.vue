@@ -10,7 +10,7 @@ import { reactive } from 'vue'
 import { fullScreen } from '@/utils/FullScreen'
 import { useThemeStore } from '@/stores/modules/theme'
 
-const {toggleThemeConfig} = useThemeStore()
+const { toggleThemeConfig } = useThemeStore()
 const locales = reactive([
   {
     label: '中文',
@@ -59,7 +59,7 @@ const locales = reactive([
 
             <!-- 皮肤按钮 -->
             <el-tooltip content="主题配置" placement="bottom">
-              <svg-icon class="cursor-pointer" name="Theme" @click="toggleThemeConfig"/>
+              <svg-icon class="cursor-pointer" name="Theme" @click="toggleThemeConfig" />
             </el-tooltip>
 
             <!-- 锁屏按钮 -->
