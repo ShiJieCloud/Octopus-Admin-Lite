@@ -16,6 +16,7 @@ const translateShow = ref(false)
   <div class="layout-responsive">
     <el-container>
       <el-header class="flex items-center justify-between">
+        <div>菜单</div>
         <Logo />
         <div class="header-menu">
           <!-- 搜索按钮 -->
@@ -41,9 +42,9 @@ const translateShow = ref(false)
                 <transition name="fade">
                   <div v-show="translateShow" id="language-list" class="language-list mt-2">
                     <ul>
-                      <li class="p-2 hover:bg-gray-200">英语</li>
-                      <li class="p-2 hover:bg-gray-200">中文</li>
-                      <li class="p-2 hover:bg-gray-200">西班牙语</li>
+                      <li class="p-2">英语</li>
+                      <li class="p-2">中文</li>
+                      <li class="p-2">西班牙语</li>
                       <!-- 添加更多语言 -->
                     </ul>
                   </div>
