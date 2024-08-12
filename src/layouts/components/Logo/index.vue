@@ -12,8 +12,9 @@ const app_title = import.meta.env.VITE_APP_TITLE
 
 <style scoped lang="postcss">
 .logo-container {
-  @apply flex items-center justify-center;
+  @apply flex items-center;
   height: var(--os-layout-logo-height);
+  width: var(--os-layout-aside-width);
 
   .logo-title {
     @apply text-lg font-bold subpixel-antialiased;

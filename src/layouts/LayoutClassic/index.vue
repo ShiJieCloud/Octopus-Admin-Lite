@@ -125,7 +125,7 @@ const locales = reactive([
     width: var(--os-layout-aside-width);
 
     .os-logo {
-      @apply border-b border-solid overflow-hidden;
+      @apply border-b border-solid overflow-hidden pl-2;
       border-color: var(--el-border-color-light);
     }
 
