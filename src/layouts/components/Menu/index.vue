@@ -64,7 +64,7 @@ const props = defineProps({
     @apply border-0;
 
     &.el-menu--horizontal{
-      height: var(--os-layout-logo-height);
+      height: calc(var(--os-layout-logo-height) - 1px);
     }
   }
 }
