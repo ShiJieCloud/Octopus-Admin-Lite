@@ -2,6 +2,7 @@
 
 import Logo from '@/layouts/components/Logo/index.vue'
 import Main from '@/layouts/components/Main/index.vue'
+import Menu from '@/layouts/components/Menu/index.vue'
 import { ref } from 'vue'
 
 import { useThemeStore } from '@/stores/modules/theme'
@@ -9,6 +10,7 @@ import { useThemeStore } from '@/stores/modules/theme'
 const { themeConfig } = useThemeStore()
 
 const navDrawer = ref(false)
+const menuDrawer = ref(false)
 const translateShow = ref(false)
 </script>
 
@@ -16,8 +18,10 @@ const translateShow = ref(false)
   <div class="layout-responsive">
     <el-container>
       <el-header class="flex items-center justify-between">
-        <div>菜单</div>
-        <Logo />
+        <div class="h-full flex items-center gap-2" @click="menuDrawer = !menuDrawer">
+          <svg-icon width="30px" height="30px" name="MenuTree" />
+          <Logo />
+        </div>
         <div class="header-menu">
           <!-- 搜索按钮 -->
           <svg-icon width="24px" height="24px" class="cursor-pointer" name="Search" />
@@ -61,13 +65,20 @@ const translateShow = ref(false)
           </el-drawer>
         </div>
       </el-header>
-      <div class="w-full tab-container">Menu</div>
       <el-main>
+        <el-backtop target=".el-main" />
         <Main />
       </el-main>
     </el-container>
-
+    <el-drawer
+      v-model="menuDrawer"
+      direction="ltr"
+      size="320px"
+    >
+      <Menu />
+    </el-drawer>
   </div>
+
 </template>
 
 <style scoped lang="postcss">
@@ -78,13 +89,13 @@ const translateShow = ref(false)
     @apply h-full w-full;
 
     .el-header {
-      @apply w-full pl-3 pr-3 flex;
+      @apply w-full flex;
       height: var(--os-layout-header-height);
       @apply border-b border-solid overflow-hidden;
       border-color: var(--el-border-color-light);
 
       .header-menu {
-        @apply flex items-center justify-between gap-2;
+        @apply flex items-center justify-between gap-3;
       }
     }
 
@@ -94,14 +105,14 @@ const translateShow = ref(false)
     }
 
     .el-main {
-      @apply h-full p-3;
+      @apply h-full;
       background-color: var(--el-bg-color-page);
     }
   }
 }
 
 :deep(.el-drawer__header) {
-  @apply px-3 py-0 h-[55px] border-b-2 border-solid m-0;
+  @apply px-3 py-0 h-14 border-solid m-2;
   color: var(--el-text-color-regular);
   border-color: var(--el-border-color-light);
 }
