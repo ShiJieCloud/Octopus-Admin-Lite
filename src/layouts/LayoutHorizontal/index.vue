@@ -129,7 +129,6 @@ const locales = reactive([
 
       .menu-horizontal{
         width: calc(100vw - var(--os-layout-aside-width) - var(--os-layout-header-menu-width));
-        height: calc(var(--os-layout-header-height) - 20px);
       }
 
       .header-menu{
