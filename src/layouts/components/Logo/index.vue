@@ -4,8 +4,12 @@ const app_title = import.meta.env.VITE_APP_TITLE
 </script>
 
 <template>
+  <!-- logo 容器 -->
   <div class="logo-container">
-    <svg-icon class="size-8" name="logo" />
+    <!--  logo 图标 -->
+    <svg-icon width="32px" height="32px" name="logo" />
+
+    <!-- 应用标题，只在中等及以上屏幕尺寸上可见 -->
     <span class="logo-title hidden md:block">{{ app_title }}</span>
   </div>
 </template>
