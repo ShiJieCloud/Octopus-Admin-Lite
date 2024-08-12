@@ -18,8 +18,8 @@ const translateShow = ref(false)
   <div class="layout-responsive">
     <el-container>
       <el-header class="flex items-center justify-between">
-        <div class="h-full flex items-center gap-2" @click="menuDrawer = !menuDrawer">
-          <svg-icon width="30px" height="30px" name="MenuTree" />
+        <div class="h-full flex items-center gap-2">
+          <svg-icon width="30px" height="30px" name="MenuTree" @click="menuDrawer = !menuDrawer" />
           <Logo />
         </div>
         <div class="header-menu">
