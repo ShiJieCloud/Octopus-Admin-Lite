@@ -157,7 +157,7 @@ const locales = reactive([
       }
 
       .header-menu {
-        @apply flex items-center justify-between gap-2;
+        @apply flex items-center justify-between gap-3;
       }
     }
 

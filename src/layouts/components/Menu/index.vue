@@ -49,6 +49,9 @@ const props = defineProps({
       <el-menu-item index="4">
         <span>Navigator Four</span>
       </el-menu-item>
+      <el-menu-item index="5">
+        <span>Navigator Four</span>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
