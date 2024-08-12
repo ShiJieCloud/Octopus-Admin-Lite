@@ -6,11 +6,11 @@ const app_title = import.meta.env.VITE_APP_TITLE
   <div class="footer-container">
     <!-- 左侧：公司名称或标志 -->
     <div class="flex-content">
-      <svg-icon class="size-6" name="logo" />
+      <svg-icon name="logo" />
       <span class="logo-title">{{ app_title }}</span>
     </div>
     <!-- 中间：导航链接 -->
-    <div class="flex-content service-content">
+    <div class="flex-content">
       <a href="about">关于我们</a>
       <a href="#contact">联系我们</a>
       <a href="#privacy-policy">隐私政策</a>
@@ -23,16 +23,15 @@ const app_title = import.meta.env.VITE_APP_TITLE
 
 <style scoped lang="postcss">
 .footer-container{
-  @apply flex items-center justify-between w-full;
+  @apply flex items-center w-full;
   @apply select-none text-xs;
   height: var(--os-layout-footer-height);
+  @apply justify-center lg:justify-between;
 
   .flex-content{
-    @apply flex items-center gap-2;
-
-    &.service-content{
-      @apply flex justify-center gap-1  text-gray-400;
-    }
+    @apply items-center gap-2;
+    @apply flex justify-center gap-1 text-gray-400;
+    @apply hidden lg:flex;
 
     .logo-title {
       @apply font-bold subpixel-antialiased text-sm;
