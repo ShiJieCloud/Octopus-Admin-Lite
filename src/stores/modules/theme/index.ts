@@ -33,7 +33,7 @@ export const useThemeStore = defineStore(
       changeThemeColor(themeConfig.themePrimaryColor)
     })
 
-    watch(() => themeConfig.grayThemeEnabled,() => {
+    watch(() => themeConfig.grayThemeEnabled, () => {
       if (themeConfig.grayThemeEnabled) {
         document.documentElement.dataset.theme = 'gray'
       } else {
@@ -42,7 +42,7 @@ export const useThemeStore = defineStore(
     })
 
     // 添加预定义颜色
-    function addPredefineColor(color:string) {
+    function addPredefineColor(color: string) {
       console.log('color', color)
       const predefineColors = themeConfig.predefineColors
       // 查找元素的索引
@@ -59,7 +59,7 @@ export const useThemeStore = defineStore(
     }
 
     // 修改主题颜色
-    const changeThemeColor = (color:string ) => {
+    const changeThemeColor = (color: string) => {
       if (!color) {
         color = '#409eff'
         ElMessage({ type: 'success', message: '主题颜色已重置' })

@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { useThemeStore } from '@/stores/modules/theme'
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 
 const { themeConfig, changeThemeColor } = useThemeStore()
 
-const theme = ref(true)
 onMounted(() => {
+  // 在组件挂载到 DOM 后更新主题颜色
   changeThemeColor(themeConfig.themePrimaryColor)
 })
-
 </script>
 
 <template>
@@ -94,7 +93,7 @@ onMounted(() => {
               <div class="switch-title">
                 <span>theme</span>
               </div>
-              <el-switch v-model="theme" inline-prompt />
+              <el-switch inline-prompt />
             </div>
           </div>
         </div>
