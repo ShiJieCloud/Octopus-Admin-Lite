@@ -9,32 +9,33 @@ export const useThemeStore = defineStore(
   'theme',
   () => {
     const themeConfig = reactive<ThemeConfig>({
-      showThemeConfig: false,
-      darkThemeEnabled: false,
-      grayThemeEnabled: false,
+      showTheme: false,
+      darkTheme: false,
+      grayTheme: false,
       layoutMode: 'classic',
-      themePrimaryColor: '#409eff',
-      predefineColors: ['#409eff']
+      themeColor: '#409eff',
+      predefineColors: ['#409eff'],
+      menuCollapse: false
     })
 
     // 切换显示状态的方法
     const toggleThemeConfig = () => {
-      themeConfig.showThemeConfig = !themeConfig.showThemeConfig
+      themeConfig.showTheme = !themeConfig.showTheme
     }
 
     // 黑暗主题切换
-    watch(() => themeConfig.darkThemeEnabled, () => {
+    watch(() => themeConfig.darkTheme, () => {
       const html = document.documentElement as HTMLElement
-      if (themeConfig.darkThemeEnabled) {
+      if (themeConfig.darkTheme) {
         html.setAttribute('class', 'dark')
       } else {
         html.removeAttribute('class')
       }
-      changeThemeColor(themeConfig.themePrimaryColor)
+      changeThemeColor(themeConfig.themeColor)
     })
 
-    watch(() => themeConfig.grayThemeEnabled, () => {
-      if (themeConfig.grayThemeEnabled) {
+    watch(() => themeConfig.grayTheme, () => {
+      if (themeConfig.grayTheme) {
         document.documentElement.dataset.theme = 'gray'
       } else {
         document.documentElement.dataset.theme = ''
@@ -69,10 +70,10 @@ export const useThemeStore = defineStore(
       document.documentElement.style.setProperty('--el-color-primary', color)
       document.documentElement.style.setProperty(
         '--el-color-primary-dark-2',
-        themeConfig.darkThemeEnabled ? `${getLightColor(color, 0.2)}` : `${getDarkColor(color, 0.3)}`
+        themeConfig.darkTheme ? `${getLightColor(color, 0.2)}` : `${getDarkColor(color, 0.3)}`
       )
       for (let i = 1; i <= 9; i++) {
-        const primaryColor = themeConfig.darkThemeEnabled ? `${getDarkColor(color, i / 10)}` : `${getLightColor(color, i / 10)}`
+        const primaryColor = themeConfig.darkTheme ? `${getDarkColor(color, i / 10)}` : `${getLightColor(color, i / 10)}`
         document.documentElement.style.setProperty(`--el-color-primary-light-${i}`, primaryColor)
       }
     }

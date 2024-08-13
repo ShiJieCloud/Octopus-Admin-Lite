@@ -57,7 +57,7 @@ const translateShow = ref(false)
               <el-divider />
               <div class="nav-theme-switch">
                 <span>暗黑主题</span>
-                <el-switch v-model="themeConfig.darkThemeEnabled" size="large" />
+                <el-switch v-model="themeConfig.darkTheme" size="large" />
               </div>
               <el-divider />
               <span>退出登录</span>
