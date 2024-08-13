@@ -6,13 +6,13 @@ const { themeConfig, changeThemeColor } = useThemeStore()
 
 onMounted(() => {
   // 在组件挂载到 DOM 后更新主题颜色
-  changeThemeColor(themeConfig.themePrimaryColor)
+  changeThemeColor(themeConfig.themeColor)
 })
 </script>
 
 <template>
   <div>
-    <el-drawer v-model="themeConfig.showThemeConfig" size="300">
+    <el-drawer v-model="themeConfig.showTheme" size="300">
       <template #header="{ titleId }">
         <span :id="titleId" class="theme-header"> 主题配置 </span>
       </template>
@@ -62,7 +62,7 @@ onMounted(() => {
               </div>
               <el-color-picker
                 color-format="hex"
-                v-model="themeConfig.themePrimaryColor"
+                v-model="themeConfig.themeColor"
                 :predefine="themeConfig.predefineColors"
                 @change="changeThemeColor"
               />
@@ -74,7 +74,7 @@ onMounted(() => {
                   <svg-icon class="size-4" name="About"></svg-icon>
                 </el-tooltip>
               </div>
-              <el-switch v-model="themeConfig.darkThemeEnabled" />
+              <el-switch v-model="themeConfig.darkTheme" />
             </div>
             <div class="switch-box">
               <div class="switch-title">
@@ -83,7 +83,7 @@ onMounted(() => {
                   <svg-icon class="size-4" name="About"></svg-icon>
                 </el-tooltip>
               </div>
-              <el-switch v-model="themeConfig.grayThemeEnabled" />
+              <el-switch v-model="themeConfig.grayTheme" />
             </div>
           </div>
 
