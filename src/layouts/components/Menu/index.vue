@@ -1,7 +1,9 @@
 <script setup lang="ts">
+
 // 使用 props 来控制 `mode` 属性，切换菜单的显示模式（vertical | horizontal）
 const props = defineProps<{
-  mode?: 'vertical' | 'horizontal'
+  mode?: 'vertical' | 'horizontal',
+  collapse?: boolean
 }>()
 </script>
 
@@ -9,24 +11,20 @@ const props = defineProps<{
   <div class="menu-container">
     <el-menu
       class="os-menu"
+      router
       :mode="props.mode"
+      :collapse="props.collapse"
+      :show-timeout="50"
+      :hide-timeout="50"
     >
-      <el-sub-menu index="1">
+      <el-menu-item index="1">
+        <el-icon size="24px">
+          <svg-icon name="menu" />
+        </el-icon>
         <template #title>
-          <span>Navigator One</span>
+          <span>菜单</span>
         </template>
-        <el-menu-item-group title="Group One">
-          <el-menu-item index="1-1">item one</el-menu-item>
-          <el-menu-item index="1-2">item two</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="Group Two">
-          <el-menu-item index="1-3">item three</el-menu-item>
-        </el-menu-item-group>
-        <el-sub-menu index="1-4">
-          <template #title>item four</template>
-          <el-menu-item index="1-4-1">item one</el-menu-item>
-        </el-sub-menu>
-      </el-sub-menu>
+      </el-menu-item>
       <el-menu-item index="2">
         <span>Navigator Two</span>
       </el-menu-item>
@@ -44,13 +42,13 @@ const props = defineProps<{
 </template>
 
 <style scoped lang="postcss">
-.menu-container{
+.menu-container {
   background-color: var(--el-menu-bg-color);
 
-  .os-menu{
+  .os-menu {
     @apply border-0;
 
-    &.el-menu--horizontal{
+    &.el-menu--horizontal {
       height: calc(var(--os-layout-logo-height) - 1px);
     }
   }

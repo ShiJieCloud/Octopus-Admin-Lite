@@ -91,9 +91,12 @@ onMounted(() => {
           <div class="switch-container">
             <div class="switch-box">
               <div class="switch-title">
-                <span>theme</span>
+                <span>菜单折叠</span>
+                <el-tooltip content="菜单折叠，只在经典布局生效" placement="top">
+                  <svg-icon class="size-4" name="About"></svg-icon>
+                </el-tooltip>
               </div>
-              <el-switch inline-prompt />
+              <el-switch v-model="themeConfig.menuCollapse" inline-prompt />
             </div>
           </div>
         </div>

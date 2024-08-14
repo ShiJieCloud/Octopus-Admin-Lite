@@ -10,7 +10,7 @@ import { reactive } from 'vue'
 import { fullScreen } from '@/utils/FullScreen'
 import { useThemeStore } from '@/stores/modules/theme'
 
-const { toggleThemeConfig } = useThemeStore()
+const { toggleThemeConfig, themeConfig } = useThemeStore()
 const locales = reactive([
   {
     label: '中文',
@@ -26,17 +26,18 @@ const locales = reactive([
 <template>
   <div class="layout-container">
     <el-container>
-      <el-aside>
+      <el-aside :class="{ fold: !!themeConfig.menuCollapse }">
         <Logo class="os-logo" />
-        <Menu class="menu-classic" />
+        <Menu class="menu-classic" :collapse="themeConfig.menuCollapse" />
       </el-aside>
       <el-container>
         <el-header>
           <div class="header-content">
             <!-- 折叠按钮 -->
             <svg-icon
-              class="fold-expand-button"
-              name="Fold"
+              class="fold-expand-button cursor-pointer"
+              :name="themeConfig.menuCollapse ? 'Expand' : 'Fold'"
+              @click="themeConfig.menuCollapse = !themeConfig.menuCollapse"
             />
             <!-- 面包屑 -->
             <Breadcrumb />
@@ -123,6 +124,16 @@ const locales = reactive([
     @apply border-r border-solid overflow-hidden;
     border-color: var(--el-border-color-light);
     width: var(--os-layout-aside-width);
+    @apply transition-all duration-300;
+
+    &.fold {
+      width: var(--os-layout-aside-fold-width);
+
+      .os-logo {
+        @apply pl-0 justify-center;
+      }
+
+    }
 
     .os-logo {
       @apply overflow-hidden pl-2;
