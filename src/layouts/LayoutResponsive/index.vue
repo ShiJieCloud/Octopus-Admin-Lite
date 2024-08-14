@@ -90,7 +90,7 @@ const translateShow = ref(false)
     @apply h-full w-full;
 
     .el-header {
-      @apply w-full flex pl-2;
+      @apply w-full flex pl-2 pr-3;
       height: var(--os-layout-header-height);
       @apply border-b border-solid overflow-hidden;
       border-color: var(--el-border-color-light);
