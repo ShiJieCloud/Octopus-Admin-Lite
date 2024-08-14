@@ -28,3 +28,14 @@ declare interface ViteEnv {
   // 是否启用图片压缩
   VITE_USE_IMAGEMIN: boolean
 }
+
+/* __APP_INFO__ */
+declare const __APP_INFO__: {
+  pkg: {
+    name: string;
+    version: string;
+    dependencies: Recordable<string>;
+    devDependencies: Recordable<string>;
+  };
+  lastBuildTime: string;
+}

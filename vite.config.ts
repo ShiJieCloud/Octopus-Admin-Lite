@@ -7,6 +7,15 @@ import { wrapperEnv } from './build/getEnv'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { resolve } from 'path'
 
+import pkg from './package.json'
+
+// 获取 package.json 依赖
+const { dependencies, devDependencies, name, version } = pkg
+const __APP_INFO__ = {
+  pkg: { dependencies, devDependencies, name, version },
+  lastBuildTime: new Date().toString()
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 
@@ -37,6 +46,9 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       }
+    },
+    define: {
+      __APP_INFO__: JSON.stringify(__APP_INFO__)
     },
     css: {
       preprocessorOptions: {

@@ -7,7 +7,17 @@ const router = createRouter({
       path: '/',
       name: 'layout',
       component: () => import('@/layouts/index.vue'),
-      children: []
+      children: [
+        {
+          path: '/about',
+          name: 'about',
+          component: () => import('@/views/about/index.vue'),
+          meta: {
+            title: '关于项目',
+            icon: 'About'
+          }
+        }
+      ]
     }
   ]
 })

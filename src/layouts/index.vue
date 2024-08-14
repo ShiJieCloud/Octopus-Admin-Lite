@@ -29,7 +29,7 @@ const mode = computed(() => layoutMode[layMode.value])
 
 // 响应式布局，切换布局模式
 const updateMode = () => {
-  if (window.innerWidth <= 768) {
+  if (window.innerWidth < 1024) {
     layMode.value = 'responsive'
   } else {
     layMode.value = themeConfig.layoutMode

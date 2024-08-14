@@ -12,6 +12,7 @@ const props = defineProps<{
     <el-menu
       class="os-menu"
       router
+      :default-active="$route.path"
       :mode="props.mode"
       :collapse="props.collapse"
       :show-timeout="50"
@@ -25,8 +26,13 @@ const props = defineProps<{
           <span>菜单</span>
         </template>
       </el-menu-item>
-      <el-menu-item index="2">
-        <span>Navigator Two</span>
+      <el-menu-item index="/about">
+        <el-icon size="24px">
+          <svg-icon name="About" />
+        </el-icon>
+        <template #title>
+          <span>关于项目</span>
+        </template>
       </el-menu-item>
       <el-menu-item index="3" disabled>
         <span>Navigator Three</span>
