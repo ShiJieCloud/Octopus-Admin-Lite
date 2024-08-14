@@ -3,9 +3,19 @@
 </script>
 
 <template>
-  <div>Main</div>
+  <!-- 使用 transition 组件为 router-view 添加过渡效果 -->
+  <transition name="fade">
+    <!-- router-view 用于渲染匹配到的组件 -->
+    <router-view />
+  </transition>
 </template>
 
 <style scoped lang="scss">
-
+/* 定义过渡的动画效果 */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s; /* 设置动画持续时间为 0.5 秒 */
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0; /* 进入和离开时的透明度设为 0 */
+}
 </style>
