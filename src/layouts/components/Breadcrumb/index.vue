@@ -3,11 +3,22 @@
 </script>
 
 <template>
-  <el-breadcrumb separator="/" class="breadcrumb-container">
-    <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
-    <el-breadcrumb-item>management</el-breadcrumb-item>
-    <el-breadcrumb-item>list</el-breadcrumb-item>
-    <el-breadcrumb-item>detail</el-breadcrumb-item>
+  <!-- 面包屑 -->
+  <el-breadcrumb class="breadcrumb-container" separator="/">
+    <el-breadcrumb-item
+      v-for="(item, index) in $route.matched"
+      :key="index"
+      v-show="item.meta.title"
+      :to="item.components && { name: item.name }"
+      class="flex items-center w-auto text-nowrap"
+    >
+      <template #default>
+        <span class="flex items-center gap-1">
+          <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
+          <span>{{ item.meta.title }}</span>
+        </span>
+      </template>
+    </el-breadcrumb-item>
   </el-breadcrumb>
 </template>
 
