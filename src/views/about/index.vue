@@ -1,13 +1,13 @@
 <script setup lang="ts">
-
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 const { pkg } = __APP_INFO__
 const { dependencies, devDependencies, version } = pkg
 
-const columns = ref(3) // 默认列数
+// 默认列数
+const columns = ref(3)
 
-// 函数：根据窗口宽度更新列数
+// 根据窗口宽度更新列数
 const updateColumns = () => {
   if (window.innerWidth < 768) {
     columns.value = 1 // 小屏幕时列数设置为1
@@ -139,5 +139,4 @@ onBeforeUnmount(() => {
   @apply p-3 rounded space-y-3;
  background-color: var(--el-bg-color);
 }
-
 </style>
