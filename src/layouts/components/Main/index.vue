@@ -4,10 +4,11 @@
 
 <template>
   <!-- 使用 transition 组件为 router-view 添加过渡效果 -->
-  <transition name="fade">
-    <!-- router-view 用于渲染匹配到的组件 -->
-    <router-view />
-  </transition>
+  <router-view v-slot="{ Component }">
+    <transition name="fade">
+      <component :is="Component"/>
+    </transition>
+  </router-view>
 </template>
 
 <style scoped lang="scss">
