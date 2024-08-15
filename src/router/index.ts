@@ -19,13 +19,41 @@ const router = createRouter({
           }
         },
         {
-          path: '/about',
-          name: 'about',
-          component: () => import('@/views/about/index.vue'),
+          path: '/permission',
+          name: 'Permission',
           meta: {
-            title: '关于项目',
-            icon: 'About'
-          }
+            title: '权限管理',
+            icon: 'Permission'
+          },
+          children: [
+            {
+              path: '/permission/menu',
+              name: 'Menu',
+              component: () => import('@/views/menu/index.vue'),
+              meta: {
+                title: '菜单管理',
+                icon: 'PostTree'
+              }
+            },
+            {
+              path: '/permission/role',
+              name: 'Role',
+              component: () => import('@/views/role/index.vue'),
+              meta: {
+                title: '角色管理',
+                icon: 'Role'
+              }
+            },
+            {
+              path: '/about',
+              name: 'about',
+              component: () => import('@/views/about/index.vue'),
+              meta: {
+                title: '关于项目',
+                icon: 'About'
+              }
+            }
+          ]
         }
       ]
     }

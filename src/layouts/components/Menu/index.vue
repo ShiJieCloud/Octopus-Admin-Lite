@@ -19,29 +19,44 @@ const props = defineProps<{
       :hide-timeout="50"
     >
       <el-menu-item index="/home">
-        <el-icon size="24px">
+        <el-icon size="22px">
           <svg-icon name="Home" />
         </el-icon>
         <template #title>
           <span>首页</span>
         </template>
       </el-menu-item>
+      <el-sub-menu index="/permission">
+        <template #title>
+          <el-icon size="22px">
+            <svg-icon name="Permission" />
+          </el-icon>
+          <span>权限管理</span>
+        </template>
+        <el-menu-item index="/permission/menu">
+          <el-icon size="22px">
+            <svg-icon name="PostTree" />
+          </el-icon>
+          <template #title>
+            <span>菜单管理</span>
+          </template>
+        </el-menu-item>
+        <el-menu-item index="/permission/role">
+          <el-icon size="22px">
+            <svg-icon name="Role" />
+          </el-icon>
+          <template #title>
+            <span>角色管理</span>
+          </template>
+        </el-menu-item>
+      </el-sub-menu>
       <el-menu-item index="/about">
-        <el-icon size="24px">
+        <el-icon size="22px">
           <svg-icon name="About" />
         </el-icon>
         <template #title>
           <span>关于项目</span>
         </template>
-      </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <span>Navigator Three</span>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <span>Navigator Four</span>
-      </el-menu-item>
-      <el-menu-item index="5">
-        <span>Navigator Four</span>
       </el-menu-item>
     </el-menu>
   </div>
