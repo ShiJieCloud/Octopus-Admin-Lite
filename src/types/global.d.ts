@@ -29,13 +29,19 @@ declare interface ViteEnv {
   VITE_USE_IMAGEMIN: boolean
 }
 
-/* __APP_INFO__ */
+/* 声明对象 __APP_INFO__ 包含应用程序的元数据 */
 declare const __APP_INFO__: {
+  // 应用程序包的信息
   pkg: {
+    // 应用程序包的名称
     name: string;
+    // 应用程序包的版本
     version: string;
+    // 应用程序的依赖项记录，其中键为依赖项名称，值为版本
     dependencies: Recordable<string>;
+    // 应用程序的开发依赖项记录，其中键为依赖项名称，值为版本
     devDependencies: Recordable<string>;
   };
+  // 应用程序最后构建的时间戳
   lastBuildTime: string;
 }
