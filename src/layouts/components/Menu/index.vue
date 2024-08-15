@@ -18,12 +18,12 @@ const props = defineProps<{
       :show-timeout="50"
       :hide-timeout="50"
     >
-      <el-menu-item index="1">
+      <el-menu-item index="/home">
         <el-icon size="24px">
-          <svg-icon name="menu" />
+          <svg-icon name="Home" />
         </el-icon>
         <template #title>
-          <span>菜单</span>
+          <span>首页</span>
         </template>
       </el-menu-item>
       <el-menu-item index="/about">
