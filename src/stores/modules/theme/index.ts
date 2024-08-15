@@ -15,7 +15,9 @@ export const useThemeStore = defineStore(
       layoutMode: 'classic',
       themeColor: '#409eff',
       predefineColors: ['#409eff'],
-      menuCollapse: false
+      menuCollapse: false,
+      showBreadcrumbIcon: true,
+      showBreadcrumb: true
     })
 
     // 切换显示状态的方法

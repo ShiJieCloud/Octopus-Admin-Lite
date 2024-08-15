@@ -15,4 +15,8 @@ export interface ThemeConfig {
   predefineColors: string[];
   // 菜单折叠
   menuCollapse: boolean;
+  // 面包屑图标显示
+  showBreadcrumbIcon: boolean;
+  // 面包屑显示
+  showBreadcrumb: boolean;
 }

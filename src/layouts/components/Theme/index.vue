@@ -57,7 +57,7 @@ onMounted(() => {
               <div class="switch-title">
                 <span>主题颜色</span>
                 <el-tooltip content="主题颜色" placement="top">
-                  <svg-icon class="size-4" name="About"></svg-icon>
+                  <svg-icon width="16px" height="16px" name="About"></svg-icon>
                 </el-tooltip>
               </div>
               <el-color-picker
@@ -71,7 +71,7 @@ onMounted(() => {
               <div class="switch-title">
                 <span>暗黑主题</span>
                 <el-tooltip content="暗黑主题" placement="top">
-                  <svg-icon class="size-4" name="About"></svg-icon>
+                  <svg-icon width="16px" height="16px" name="About"></svg-icon>
                 </el-tooltip>
               </div>
               <el-switch v-model="themeConfig.darkTheme" />
@@ -80,7 +80,7 @@ onMounted(() => {
               <div class="switch-title">
                 <span>灰色模式</span>
                 <el-tooltip content="灰色模式" placement="top">
-                  <svg-icon class="size-4" name="About"></svg-icon>
+                  <svg-icon width="16px" height="16px" name="About"></svg-icon>
                 </el-tooltip>
               </div>
               <el-switch v-model="themeConfig.grayTheme" />
@@ -93,10 +93,28 @@ onMounted(() => {
               <div class="switch-title">
                 <span>菜单折叠</span>
                 <el-tooltip content="菜单折叠，只在经典布局生效" placement="top">
-                  <svg-icon class="size-4" name="About"></svg-icon>
+                  <svg-icon width="16px" height="16px" name="About"></svg-icon>
                 </el-tooltip>
               </div>
               <el-switch v-model="themeConfig.menuCollapse" inline-prompt />
+            </div>
+            <div class="switch-box">
+              <div class="switch-title">
+                <span>面包屑</span>
+                <el-tooltip content="面包屑隐藏" placement="top">
+                  <svg-icon width="16px" height="16px" name="About"></svg-icon>
+                </el-tooltip>
+              </div>
+              <el-switch v-model="themeConfig.showBreadcrumb" inline-prompt />
+            </div>
+            <div class="switch-box">
+              <div class="switch-title">
+                <span>面包屑图标</span>
+                <el-tooltip content="面包屑图标隐藏" placement="top">
+                  <svg-icon width="16px" height="16px" name="About"></svg-icon>
+                </el-tooltip>
+              </div>
+              <el-switch v-model="themeConfig.showBreadcrumbIcon" inline-prompt />
             </div>
           </div>
         </div>

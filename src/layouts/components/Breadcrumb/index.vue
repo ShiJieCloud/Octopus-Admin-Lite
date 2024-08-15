@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { useThemeStore } from '@/stores/modules/theme'
 
+const { themeConfig } = useThemeStore()
 </script>
 
 <template>
   <!-- 面包屑 -->
-  <el-breadcrumb class="breadcrumb-container" separator="/">
+  <el-breadcrumb v-show="themeConfig.showBreadcrumb" class="breadcrumb-container" separator="/">
     <el-breadcrumb-item
       v-for="(item, index) in $route.matched"
       :key="index"
@@ -14,7 +16,7 @@
     >
       <template #default>
         <span class="flex items-center gap-1">
-          <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
+          <svg-icon v-show="themeConfig.showBreadcrumbIcon" v-if="item.meta.icon" :name="item.meta.icon" />
           <span>{{ item.meta.title }}</span>
         </span>
       </template>
