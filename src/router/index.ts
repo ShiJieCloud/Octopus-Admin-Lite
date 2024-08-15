@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useTabsStore } from '@/stores/modules/tabs'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -58,6 +59,24 @@ const router = createRouter({
       ]
     }
   ]
+})
+
+// 添加路由守卫来控制 NProgress
+router.beforeEach(async (to, from) => {
+  return true
+})
+
+router.afterEach((to) => {
+  const tabsStore = useTabsStore()
+
+  if (to.path !== '/login') {
+    tabsStore.addTab(to)
+    tabsStore.activeTab.value = to.name
+  }
+
+  // 设置页面标题
+  const title = import.meta.env.VITE_APP_TITLE
+  document.title = to.meta.title + ' - '  + title
 })
 
 export default router

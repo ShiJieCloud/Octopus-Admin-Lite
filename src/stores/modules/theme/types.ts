@@ -19,4 +19,8 @@ export interface ThemeConfig {
   showBreadcrumbIcon: boolean;
   // 面包屑显示
   showBreadcrumb: boolean;
+  // 标签页显示
+  showTabs: boolean;
+  // 标签页图标显示
+  showTabsIcon: boolean;
 }

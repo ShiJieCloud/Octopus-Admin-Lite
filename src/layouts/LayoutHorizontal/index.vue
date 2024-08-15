@@ -10,7 +10,7 @@ import { reactive } from 'vue'
 
 import { useThemeStore } from '@/stores/modules/theme'
 
-const {toggleThemeConfig} = useThemeStore()
+const { toggleThemeConfig, themeConfig } = useThemeStore()
 
 const locales = reactive([
   {
@@ -93,7 +93,7 @@ const locales = reactive([
             </el-dropdown>
           </div>
         </el-header>
-        <tab-bar class="tab-container" />
+        <tab-bar v-show="themeConfig.showTabs" class="tab-container" />
         <el-main>
           <Main />
         </el-main>

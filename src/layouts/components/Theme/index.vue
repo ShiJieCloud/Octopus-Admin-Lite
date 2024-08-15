@@ -116,6 +116,24 @@ onMounted(() => {
               </div>
               <el-switch v-model="themeConfig.showBreadcrumbIcon" inline-prompt />
             </div>
+            <div class="switch-box">
+              <div class="switch-title">
+                <span>标签页</span>
+                <el-tooltip content="标签页隐藏" placement="top">
+                  <svg-icon width="16px" height="16px" name="About"></svg-icon>
+                </el-tooltip>
+              </div>
+              <el-switch v-model="themeConfig.showTabs" inline-prompt />
+            </div>
+            <div class="switch-box">
+              <div class="switch-title">
+                <span>标签页图标</span>
+                <el-tooltip content="标签页图标隐藏" placement="top">
+                  <svg-icon width="16px" height="16px" name="About"></svg-icon>
+                </el-tooltip>
+              </div>
+              <el-switch v-model="themeConfig.showTabsIcon" inline-prompt />
+            </div>
           </div>
         </div>
       </el-scrollbar>

@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { useTabsStore } from '@/stores/modules/tabs'
+import { useThemeStore } from '@/stores/modules/theme'
+
+const tabsStore = useTabsStore()
+const { themeConfig } = useThemeStore()
 
 const tabs = Array(1).fill({
   label: 'About',
@@ -15,19 +20,24 @@ const tabs = Array(1).fill({
     <div class="tab-bar-box">
       <el-scrollbar>
         <el-tabs
+          v-model="tabsStore.activeTab"
           tab-position="top"
           type="card"
           closable
+          @tab-remove="tabsStore.closeTab"
+          @tab-click="tabsStore.handleClick"
         >
           <el-tab-pane
-            v-for="(item, index) in tabs"
+            v-for="(item, index) in tabsStore.cacheTabs"
             :key="index"
             :name="item.name"
           >
             <template #label>
-                <span class="tab-title">
-                  <svg-icon :name="item.icon" />
-                  <span>{{ item.label }}</span>
+                <span class="flex items-center">
+                  <el-icon v-show="themeConfig.showTabsIcon" size="18px" class="mr-1 fill-black">
+                    <svg-icon :name="item.meta.icon" />
+                  </el-icon>
+                  <span>{{ item.meta.title }}</span>
                 </span>
             </template>
           </el-tab-pane>

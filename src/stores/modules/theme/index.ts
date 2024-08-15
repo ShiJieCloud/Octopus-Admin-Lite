@@ -17,7 +17,9 @@ export const useThemeStore = defineStore(
       predefineColors: ['#409eff'],
       menuCollapse: false,
       showBreadcrumbIcon: true,
-      showBreadcrumb: true
+      showBreadcrumb: true,
+      showTabs: true,
+      showTabsIcon: true
     })
 
     // 切换显示状态的方法
