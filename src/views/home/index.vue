@@ -4,10 +4,7 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'YourComponentName'
-}
+<script setup lang="ts">
 </script>
 
 <style scoped lang="postcss">
