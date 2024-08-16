@@ -44,17 +44,17 @@ const router = createRouter({
                 title: '角色管理',
                 icon: 'Role'
               }
-            },
-            {
-              path: '/about',
-              name: 'about',
-              component: () => import('@/views/about/index.vue'),
-              meta: {
-                title: '关于项目',
-                icon: 'About'
-              }
             }
           ]
+        },
+        {
+          path: '/about',
+          name: 'about',
+          component: () => import('@/views/about/index.vue'),
+          meta: {
+            title: '关于项目',
+            icon: 'About'
+          }
         }
       ]
     }
@@ -62,7 +62,7 @@ const router = createRouter({
 })
 
 // 添加路由守卫来控制 NProgress
-router.beforeEach(async (to, from) => {
+router.beforeEach(async () => {
   return true
 })
 
