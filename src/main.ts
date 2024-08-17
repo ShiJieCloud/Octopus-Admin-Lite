@@ -15,6 +15,8 @@ import 'virtual:svg-icons-register'
 import '@/assets/iconfont/iconfont.js'
 import GlobalComponents from '@/components/index'
 
+import directives from '@/directives'
+
 const app = createApp(App)
 
 app.use(router)
@@ -22,5 +24,6 @@ app.use(router)
     locale: zhCn
   })
   .use(GlobalComponents)
+  .use(directives)
   .use(pinia)
   .mount('#app')
