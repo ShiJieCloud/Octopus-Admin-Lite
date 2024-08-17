@@ -6,8 +6,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'layout',
       redirect: 'home',
+      name: 'layout',
       component: () => import('@/layouts/index.vue'),
       children: [
         {
@@ -67,11 +67,11 @@ router.beforeEach(async () => {
 })
 
 router.afterEach((to) => {
-  const tabsStore = useTabsStore()
+  const { addTab, tabConfig } = useTabsStore()
 
   if (to.path !== '/login') {
-    tabsStore.addTab(to)
-    tabsStore.activeTab.value = to.name
+    addTab(to)
+    tabConfig.activeTab = to.name as string
   }
 
   // 设置页面标题
