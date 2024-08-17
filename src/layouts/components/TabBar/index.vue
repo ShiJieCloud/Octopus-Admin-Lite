@@ -2,15 +2,8 @@
 import { useTabsStore } from '@/stores/modules/tabs'
 import { useThemeStore } from '@/stores/modules/theme'
 
-const tabsStore = useTabsStore()
+const { tabConfig, closeTab, handleClick } = useTabsStore()
 const { themeConfig } = useThemeStore()
-
-const tabs = Array(1).fill({
-  label: 'About',
-  name: 'about',
-  icon: 'About',
-  path: '/about'
-})
 
 </script>
 
@@ -20,15 +13,15 @@ const tabs = Array(1).fill({
     <div class="tab-bar-box">
       <el-scrollbar>
         <el-tabs
-          v-model="tabsStore.activeTab"
+          v-model="tabConfig.activeTab"
           tab-position="top"
           type="card"
           closable
-          @tab-remove="tabsStore.closeTab"
-          @tab-click="tabsStore.handleClick"
+          @tab-remove="closeTab"
+          @tab-click="handleClick"
         >
           <el-tab-pane
-            v-for="(item, index) in tabsStore.cacheTabs"
+            v-for="(item, index) in tabConfig.cacheTabs"
             :key="index"
             :name="item.name"
           >
