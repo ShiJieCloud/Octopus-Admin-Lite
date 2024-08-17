@@ -1,23 +1,25 @@
 //标签页
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { reactive } from 'vue'
 import router from '@/router'
 
 export const useTabsStore = defineStore(
   'tabs',
   () => {
-    const activeTab: any = ref('')
-    const refresh = ref(true)
-    const cacheTabs: any = ref([])
+    const tabConfig = reactive({
+      activeTab: '',
+      refresh: true,
+      cacheTabs: []
+    })
 
     //关闭选项卡,如果是最后一个，则跳转上一个，如果是中间，则跳转最后一个
     const closeTab = () => {
-      const index = cacheTabs.value.findIndex((tab) => tab.name === activeTab.value)
+      const index = tabConfig.cacheTabs.findIndex((tab) => tab.name === tabConfig.activeTab)
 
       if (index !== -1) {
-        cacheTabs.value.splice(index, 1)
+        tabConfig.cacheTabs.splice(index, 1)
         // 获取剩余的标签页数量
-        const remainingTabs = cacheTabs.value.length
+        const remainingTabs = tabConfig.cacheTabs.length
 
         if (remainingTabs > 0) {
           // 计算新的激活标签页的索引
@@ -32,7 +34,7 @@ export const useTabsStore = defineStore(
           }
 
           // 更新路由或者其他逻辑，这里假设 cacheTabs 是响应式对象，会自动更新视图
-          router.push({ name: cacheTabs.value[newIndex].name })
+          router.push({ name: tabConfig.cacheTabs[newIndex].name })
         } else {
           // 如果没有剩余的标签页了，可以在这里处理跳转到默认页或者其他逻辑
           router.push({ name: 'home' }) // 例如跳转到首页
@@ -41,7 +43,7 @@ export const useTabsStore = defineStore(
     }
 
     const refreshTab = () => {
-      refresh.value = !refresh.value
+      tabConfig.refresh = !tabConfig.refresh
     }
 
     //点击选项卡
@@ -52,49 +54,47 @@ export const useTabsStore = defineStore(
 
     //添加选项卡
     const addTab = (route: any) => {
-      const index = cacheTabs.value.findIndex((tab) => tab.name === route.name)
+      const index = tabConfig.cacheTabs.findIndex((tab) => tab.name === route.name)
       if (index === -1) {
-        cacheTabs.value.push(route)
+        tabConfig.cacheTabs.push(route)
       }
     }
 
     // 关闭其他选项卡
     const closeOtherTabs = () => {
-      cacheTabs.value = cacheTabs.value.filter((tab) => tab.name === activeTab.value)
+      tabConfig.cacheTabs = tabConfig.cacheTabs.filter((tab) => tab.name === tabConfig.activeTab)
     }
 
     // 关闭全部选项卡
     const closeAllTabs = () => {
-      cacheTabs.value = []
+      tabConfig.cacheTabs = []
       router.push({ name: 'Home' })
     }
 
     // 关闭右侧选项卡
     const closeRightTabs = () => {
-      const index = cacheTabs.value.findIndex((tab) => tab.name === activeTab.value)
+      const index = tabConfig.cacheTabs.findIndex((tab) => tab.name === tabConfig.activeTab)
       if (index !== -1) {
         // 将 cacheTabs 中从当前选项卡开始到末尾的部分截取出来
-        cacheTabs.value = cacheTabs.value.slice(0, index + 1)
+        tabConfig.cacheTabs = tabConfig.cacheTabs.slice(0, index + 1)
       }
     }
 
     // 关闭左侧选项卡
     const closeLeftTabs = () => {
-      const index = cacheTabs.value.findIndex((tab) => tab.name === activeTab.value)
+      const index = tabConfig.cacheTabs.findIndex((tab) => tab.name === tabConfig.activeTab)
       if (index !== -1) {
-        cacheTabs.value = cacheTabs.value.slice(index)
+        tabConfig.cacheTabs = tabConfig.cacheTabs.slice(index)
       }
     }
 
     const clearTabs = () => {
-      activeTab.value = ''
-      cacheTabs.value = []
+      tabConfig.activeTab = ''
+      tabConfig.cacheTabs = []
     }
 
     return {
-      activeTab,
-      cacheTabs,
-      refresh,
+      tabConfig,
       refreshTab,
       handleClick,
       addTab,
