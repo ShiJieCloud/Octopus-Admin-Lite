@@ -9,6 +9,7 @@ import { resolve } from 'path'
 
 import pkg from './package.json'
 import { viteMockServe } from 'vite-plugin-mock'
+import setupVuePlugin from 'vite-plugin-vue-setup-extend'
 
 // 从 package.json 中解构字段
 const { dependencies, devDependencies, name, version } = pkg
@@ -44,6 +45,7 @@ export default defineConfig(({ command,mode }: ConfigEnv): UserConfig => {
     plugins: [
       vue(),
       vueJsx(),
+      setupVuePlugin(),
       viteMockServe({
         mockPath: 'mock',
         enable: command === 'serve'

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="LayoutClassic">
 import Footer from '@/layouts/components/Footer/index.vue'
 import Menu from '@/layouts/components/Menu/index.vue'
 import Logo from '@/layouts/components/Logo/index.vue'

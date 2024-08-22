@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="TabBar">
 import { useTabsStore } from '@/stores/modules/tabs'
 import { useThemeStore } from '@/stores/modules/theme'
 

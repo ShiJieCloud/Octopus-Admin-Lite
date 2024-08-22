@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="About">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 const { pkg } = __APP_INFO__

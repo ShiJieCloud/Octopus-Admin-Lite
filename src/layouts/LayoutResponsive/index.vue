@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="LayoutResponsive">
 import Logo from '@/layouts/components/Logo/index.vue'
 import Main from '@/layouts/components/Main/index.vue'
 import Menu from '@/layouts/components/Menu/index.vue'

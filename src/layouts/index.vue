@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="Layout">
 import { type Component, computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import LayoutClassic from '@/layouts/LayoutClassic/index.vue'
 import LayoutHorizontal from '@/layouts/LayoutHorizontal/index.vue'

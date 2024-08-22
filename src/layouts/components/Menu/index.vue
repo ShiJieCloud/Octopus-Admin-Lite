@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="OSMenu">
 
 // 使用 props 来控制 `mode` 属性，切换菜单的显示模式（vertical | horizontal）
 const props = defineProps<{

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="Footer">
 const app_title = import.meta.env.VITE_APP_TITLE
 </script>
 

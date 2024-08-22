@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="Breadcrumb">
 import { useThemeStore } from '@/stores/modules/theme'
 
 const { themeConfig } = useThemeStore()

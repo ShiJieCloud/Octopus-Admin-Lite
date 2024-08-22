@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="Theme">
 import { useThemeStore } from '@/stores/modules/theme'
 import { onMounted } from 'vue'
 
