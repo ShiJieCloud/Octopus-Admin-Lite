@@ -1,6 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useTabsStore } from '@/stores/modules/tabs'
 
+import NProgress from 'nprogress'
+
+// 禁用右上角的旋转动画
+NProgress.configure({ showSpinner: false })
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -62,7 +67,9 @@ const router = createRouter({
 })
 
 // 添加路由守卫来控制 NProgress
-router.beforeEach(async () => {
+router.beforeEach( () => {
+  // 开启进度条动画
+  NProgress.start()
   return true
 })
 
@@ -77,6 +84,9 @@ router.afterEach((to) => {
   // 设置页面标题
   const title = import.meta.env.VITE_APP_TITLE
   document.title = to.meta.title + ' - '  + title
+
+  // 关闭进度条动画
+  NProgress.done()
 })
 
 export default router

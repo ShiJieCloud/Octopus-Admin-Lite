@@ -1,0 +1,8 @@
+/* 自定义 NProgress 的颜色渐变样式 */
+#nprogress .bar {
+  background-color: var(--el-color-primary);
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #fff, 0 0 5px #fff;
+}

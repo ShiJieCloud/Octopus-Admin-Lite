@@ -8,6 +8,9 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import 'element-plus/theme-chalk/dark/css-vars.css'
+
+// NProgress 进度条样式
+import 'nprogress/nprogress.css'
 // 全局样式
 import './assets/styles/index.scss'
 
