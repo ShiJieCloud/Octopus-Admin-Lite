@@ -16,10 +16,12 @@
   "dependencies": {
     "axios": "^1.7.4",
     "element-plus": "^2.7.8",
+    "mockjs": "^1.1.0",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
     "sass": "^1.77.8",
     "screenfull": "^6.0.2",
+    "vite-plugin-mock": "^3.0.2",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },

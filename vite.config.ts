@@ -8,6 +8,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { resolve } from 'path'
 
 import pkg from './package.json'
+import { viteMockServe } from 'vite-plugin-mock'
 
 // 从 package.json 中解构字段
 const { dependencies, devDependencies, name, version } = pkg
@@ -24,7 +25,7 @@ const __APP_INFO__ = {
 }
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
+export default defineConfig(({ command,mode }: ConfigEnv): UserConfig => {
 
   const root = process.cwd()
   // 获取.env文件中的内容
@@ -43,6 +44,10 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     plugins: [
       vue(),
       vueJsx(),
+      viteMockServe({
+        mockPath: 'mock',
+        enable: command === 'serve'
+      }),
       // 使用 svg 图标
       createSvgIconsPlugin({
         iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
