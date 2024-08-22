@@ -1,9 +1,11 @@
 //全局注册组件
 import SvgIcon from './SvgIcon/index.vue'
+import Pagination from './Pagination/index.vue'
 
 //全局组件
 const globalComponents = {
-  SvgIcon
+  SvgIcon,
+  Pagination
 }
 
 //对外暴露插件对象
