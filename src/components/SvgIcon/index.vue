@@ -1,6 +1,6 @@
 <!-- src/components/SvgIcon.vue -->
 <template>
-  <svg :class="iconClass" :width="width" :height="height" :fill="color" aria-hidden="true">
+  <svg :class="iconClass" :width="size" :height="size" :fill="color" aria-hidden="true">
     <use :xlink:href="symbolId" />
   </svg>
 </template>
@@ -11,16 +11,14 @@ import { computed } from 'vue'
 interface SvgProps {
   name: string // 图标的名称 ==> 必传
   prefix?: string
-  width?: string
-  height?: string
+  size?: string
   color?: string
   iconClass?: string // 图标的类名 ==> 非必传
 }
 
 const props = withDefaults(defineProps<SvgProps>(), {
   prefix: 'icon',
-  width: '20px',
-  height: '20px',
+  size: '20px',
   color: 'currentColor',
   iconClass: ''
 })
