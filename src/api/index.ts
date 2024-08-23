@@ -4,7 +4,7 @@ import { ElMessage } from 'element-plus'
 // 创建axios实例
 export const http = axios.create({
   // 设置基础URL
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_GLOB_API_URL,
   // 设置请求超时时间
   timeout: 5000,
   // 允许跨域请求时发送凭据（比如 cookies）
@@ -25,7 +25,13 @@ http.interceptors.request.use(
 http.interceptors.response.use(
   (response) => {
     // 处理响应数据
-    return response.data
+    const { code, msg, data} = response.data
+    if (code !== 200) {
+      ElMessage.error(msg)
+      return Promise.reject(msg)
+    }
+    ElMessage.success(msg)
+    return data
   },
   (error) => {
     const state = error.state

@@ -1,10 +1,53 @@
 const menuList = [
   {
-    path: '/home',
+    id: 1,
     name: 'Home',
+    icon: 'Home',
+    sort: 1,
+    permission: '',
+    path: '/home',
     component: 'home/index',
-    title: '首页',
-    icon: 'Home'
+    status: 1,
+    createTime: '2022-01-01 12:00:00',
+    title: '首页'
+  },
+  {
+    id: 2,
+    title: 'Dashboard',
+    name: 'Dashboard',
+    icon: 'Dashboard',
+    sort: 2,
+    permission: '',
+    path: '/dashboard',
+    component: '',
+    status: 1,
+    createTime: '2022-01-01 12:00:00',
+    children: [
+      {
+        id: 3,
+        name: 'Analysis',
+        icon: 'Analysis',
+        sort: 1,
+        permission: '',
+        path: '/dashboard/analysis',
+        component: 'dashboard/analysis/index',
+        status: 1,
+        createTime: '2022-01-01 12:00:00',
+        title: '分析页'
+      },
+      {
+        id: 4,
+        name: 'Workplace',
+        icon: 'Workplace',
+        sort: 2,
+        permission: '',
+        path: '/dashboard/workplace',
+        component: 'dashboard/workplace/index',
+        status: 0,
+        createTime: '2022-01-01 12:00:00',
+        title: '工作台'
+      }
+    ]
   }
 ]
 
