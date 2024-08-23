@@ -114,8 +114,10 @@ const handleDeleteMenu = (menuId: any) => {
               </el-col>
               <el-col :xs="24" :sm="6" :lg="4">
                 <el-form-item class="float-right">
-                  <el-button type="primary" @click="searchMenu" :loading="searchFormLoading"> 查询 </el-button>
-                  <el-button @click="resetSearchForm"> 重置 </el-button>
+                  <el-button type="primary" @click="searchMenu" :loading="searchFormLoading">
+                    <svg-icon name="Search" class="mr-1" /> 查询 </el-button>
+                  <el-button @click="resetSearchForm">
+                    <svg-icon name="reset" class="mr-1" /> 重置 </el-button>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -125,9 +127,9 @@ const handleDeleteMenu = (menuId: any) => {
       <el-card>
         <template #header>
           <div>
-            <el-button type="primary" plain>新增菜单</el-button>
-            <el-button type="danger" plain>批量删除</el-button>
-            <el-button plain>展开/折叠</el-button>
+            <el-button type="primary" plain><svg-icon size="18px" name="add" class="mr-1" /> 新增菜单 </el-button>
+            <el-button type="danger" plain><svg-icon size="18px" name="delete" class="mr-1" /> 批量删除 </el-button>
+            <el-button plain><svg-icon size="18px" name="expand-fold" class="mr-1" /> 展开/折叠 </el-button>
           </div>
         </template>
         <el-table
@@ -171,14 +173,14 @@ const handleDeleteMenu = (menuId: any) => {
           <el-table-column prop="createTime" label="创建时间" min-width="180" header-align="center" align="center" />
           <el-table-column label="操作" min-width="200" header-align="center" align="center" >
             <template #default="scope">
-              <el-button link size="small" type="primary"> 修改 </el-button>
-              <el-button link size="small" type="primary"> 新增 </el-button>
+              <el-button link size="small" type="primary"><svg-icon size="16px" name="edit" class="mr-1" /> 查看详情 </el-button>
+              <el-button link size="small" type="primary"><svg-icon size="16px" name="add" class="mr-1" /> 新增 </el-button>
               <el-popconfirm
                 title="确定要删除吗?"
                 @confirm="handleDeleteMenu(scope.row.id)"
               >
                 <template #reference>
-                  <el-button link size="small" type="danger"> 删除 </el-button>
+                  <el-button link size="small" type="danger"><svg-icon size="16px" name="delete" class="mr-1" /> 删除 </el-button>
                 </template>
               </el-popconfirm>
             </template>
