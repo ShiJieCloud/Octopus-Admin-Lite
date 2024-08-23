@@ -2,7 +2,7 @@ const menuList = [
   {
     id: 1,
     name: 'Home',
-    icon: 'Home',
+    icon: 'home',
     sort: 1,
     permission: '',
     path: '/home',
@@ -15,7 +15,7 @@ const menuList = [
     id: 2,
     title: 'Dashboard',
     name: 'Dashboard',
-    icon: 'Dashboard',
+    icon: 'dashboard',
     sort: 2,
     permission: '',
     path: '/dashboard',
@@ -26,7 +26,7 @@ const menuList = [
       {
         id: 3,
         name: 'Analysis',
-        icon: 'Analysis',
+        icon: 'analysis',
         sort: 1,
         permission: '',
         path: '/dashboard/analysis',
@@ -38,7 +38,7 @@ const menuList = [
       {
         id: 4,
         name: 'Workplace',
-        icon: 'Workplace',
+        icon: 'workplace',
         sort: 2,
         permission: '',
         path: '/dashboard/workplace',

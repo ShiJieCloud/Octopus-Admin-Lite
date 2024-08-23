@@ -31,7 +31,7 @@ onMounted(() => {
                   <div class="layout-light"></div>
                   <div class="layout-content"></div>
                 </div>
-                <svg-icon class="select-layout" name="About" v-if="themeConfig.layoutMode == 'classic'" />
+                <svg-icon class="select-layout" name="tips" v-if="themeConfig.layoutMode == 'classic'" />
               </div>
             </el-tooltip>
             <el-tooltip
@@ -46,7 +46,7 @@ onMounted(() => {
               >
                 <div class="layout-dark"></div>
                 <div class="layout-content"></div>
-                <svg-icon class="select-layout" name="About" v-if=" themeConfig.layoutMode == 'horizontal'" />
+                <svg-icon class="select-layout" name="tips" v-if=" themeConfig.layoutMode == 'horizontal'" />
               </div>
             </el-tooltip>
           </div>
@@ -57,7 +57,7 @@ onMounted(() => {
               <div class="switch-title">
                 <span>主题颜色</span>
                 <el-tooltip content="主题颜色" placement="top">
-                  <svg-icon width="16px" height="16px" name="About"></svg-icon>
+                  <svg-icon width="16px" height="16px" name="tips"></svg-icon>
                 </el-tooltip>
               </div>
               <el-color-picker
@@ -71,7 +71,7 @@ onMounted(() => {
               <div class="switch-title">
                 <span>暗黑主题</span>
                 <el-tooltip content="暗黑主题" placement="top">
-                  <svg-icon width="16px" height="16px" name="About"></svg-icon>
+                  <svg-icon width="16px" height="16px" name="tips"></svg-icon>
                 </el-tooltip>
               </div>
               <el-switch v-model="themeConfig.darkTheme" />
@@ -80,7 +80,7 @@ onMounted(() => {
               <div class="switch-title">
                 <span>灰色模式</span>
                 <el-tooltip content="灰色模式" placement="top">
-                  <svg-icon width="16px" height="16px" name="About"></svg-icon>
+                  <svg-icon width="16px" height="16px" name="tips"></svg-icon>
                 </el-tooltip>
               </div>
               <el-switch v-model="themeConfig.grayTheme" />
@@ -93,7 +93,7 @@ onMounted(() => {
               <div class="switch-title">
                 <span>菜单折叠</span>
                 <el-tooltip content="菜单折叠，只在经典布局生效" placement="top">
-                  <svg-icon width="16px" height="16px" name="About"></svg-icon>
+                  <svg-icon width="16px" height="16px" name="tips"></svg-icon>
                 </el-tooltip>
               </div>
               <el-switch v-model="themeConfig.menuCollapse" inline-prompt />
@@ -102,7 +102,7 @@ onMounted(() => {
               <div class="switch-title">
                 <span>面包屑</span>
                 <el-tooltip content="面包屑隐藏" placement="top">
-                  <svg-icon width="16px" height="16px" name="About"></svg-icon>
+                  <svg-icon width="16px" height="16px" name="tips"></svg-icon>
                 </el-tooltip>
               </div>
               <el-switch v-model="themeConfig.showBreadcrumb" inline-prompt />
@@ -111,7 +111,7 @@ onMounted(() => {
               <div class="switch-title">
                 <span>面包屑图标</span>
                 <el-tooltip content="面包屑图标隐藏" placement="top">
-                  <svg-icon width="16px" height="16px" name="About"></svg-icon>
+                  <svg-icon width="16px" height="16px" name="tips"></svg-icon>
                 </el-tooltip>
               </div>
               <el-switch v-model="themeConfig.showBreadcrumbIcon" inline-prompt />
@@ -120,7 +120,7 @@ onMounted(() => {
               <div class="switch-title">
                 <span>标签页</span>
                 <el-tooltip content="标签页隐藏" placement="top">
-                  <svg-icon width="16px" height="16px" name="About"></svg-icon>
+                  <svg-icon width="16px" height="16px" name="tips"></svg-icon>
                 </el-tooltip>
               </div>
               <el-switch v-model="themeConfig.showTabs" inline-prompt />
@@ -129,7 +129,7 @@ onMounted(() => {
               <div class="switch-title">
                 <span>标签页图标</span>
                 <el-tooltip content="标签页图标隐藏" placement="top">
-                  <svg-icon width="16px" height="16px" name="About"></svg-icon>
+                  <svg-icon width="16px" height="16px" name="tips"></svg-icon>
                 </el-tooltip>
               </div>
               <el-switch v-model="themeConfig.showTabsIcon" inline-prompt />

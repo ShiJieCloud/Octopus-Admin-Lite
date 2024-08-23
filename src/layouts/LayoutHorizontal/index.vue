@@ -36,7 +36,7 @@ const locales = reactive([
           <div class="header-menu">
             <!-- 语言转换 -->
             <el-dropdown :hide-on-click="false">
-              <svg-icon name="Earth" />
+              <svg-icon name="language" />
               <template #dropdown>
                 <el-dropdown-menu>
                   <el-dropdown-item :key="index" v-for="(item, index) in locales">
@@ -51,17 +51,17 @@ const locales = reactive([
 
             <!-- 皮肤按钮 -->
             <el-tooltip content="主题配置" placement="bottom">
-              <svg-icon class="cursor-pointer" name="Theme" @click="toggleThemeConfig"/>
+              <svg-icon class="cursor-pointer" name="theme" @click="toggleThemeConfig"/>
             </el-tooltip>
 
             <!-- 锁屏按钮 -->
             <el-tooltip content="锁屏" placement="bottom">
-              <svg-icon class="cursor-pointer" name="Lock" />
+              <svg-icon class="cursor-pointer" name="lock" />
             </el-tooltip>
 
             <!-- 全屏按钮 -->
             <el-tooltip content="全屏" placement="bottom">
-              <svg-icon class="cursor-pointer" name="FullScreen" @click="fullScreen" />
+              <svg-icon class="cursor-pointer" name="full-screen" @click="fullScreen" />
             </el-tooltip>
 
             <!-- 用户信息 -->
@@ -75,7 +75,7 @@ const locales = reactive([
                   <el-dropdown-item command="profile">
                     <template #default>
                       <div class="flex items-center gap-1">
-                        <svg-icon name="User" />
+                        <svg-icon name="user" />
                         <span>个人中心</span>
                       </div>
                     </template>
@@ -83,7 +83,7 @@ const locales = reactive([
                   <el-dropdown-item command="logout">
                     <template #default>
                       <div class="flex items-center gap-1">
-                        <svg-icon name="Logout" />
+                        <svg-icon name="logout" />
                         <span>退出登录</span>
                       </div>
                     </template>

@@ -11,7 +11,7 @@ const app_title = import.meta.env.VITE_APP_TITLE
   <!-- logo 容器 -->
   <div class="logo-container" :class="{ fold: themeConfig.layoutMode!='horizontal' && !!themeConfig.menuCollapse }">
     <!--  logo 图标 -->
-    <svg-icon width="32px" height="32px" name="logo" />
+    <svg-icon size="32px" name="logo" />
 
     <!-- 应用标题，只在中等及以上屏幕尺寸上可见 -->
     <span v-show="themeConfig.layoutMode=='horizontal' || !themeConfig.menuCollapse" class="logo-title hidden md:block">{{ app_title }}</span>

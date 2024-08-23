@@ -20,7 +20,7 @@ const props = defineProps<{
     >
       <el-menu-item index="/home">
         <el-icon size="22px">
-          <svg-icon name="Home" />
+          <svg-icon name="home" />
         </el-icon>
         <template #title>
           <span>首页</span>
@@ -29,13 +29,13 @@ const props = defineProps<{
       <el-sub-menu index="/permission">
         <template #title>
           <el-icon size="22px">
-            <svg-icon name="Permission" />
+            <svg-icon name="permission" />
           </el-icon>
           <span>权限管理</span>
         </template>
         <el-menu-item index="/permission/menu">
           <el-icon size="22px">
-            <svg-icon name="PostTree" />
+            <svg-icon name="post-tree" />
           </el-icon>
           <template #title>
             <span>菜单管理</span>
@@ -43,7 +43,7 @@ const props = defineProps<{
         </el-menu-item>
         <el-menu-item index="/permission/role">
           <el-icon size="22px">
-            <svg-icon name="Role" />
+            <svg-icon name="role" />
           </el-icon>
           <template #title>
             <span>角色管理</span>
@@ -52,7 +52,7 @@ const props = defineProps<{
       </el-sub-menu>
       <el-menu-item index="/about">
         <el-icon size="22px">
-          <svg-icon name="About" />
+          <svg-icon name="about" />
         </el-icon>
         <template #title>
           <span>关于项目</span>

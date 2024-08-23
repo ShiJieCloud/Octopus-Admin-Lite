@@ -18,7 +18,7 @@ const translateShow = ref(false)
     <el-container>
       <el-header class="flex items-center justify-between">
         <div class="h-full flex items-center gap-2">
-          <svg-icon width="30px" height="30px" name="menu" @click="menuDrawer = !menuDrawer" />
+          <svg-icon size="30px" name="menu" @click="menuDrawer = !menuDrawer" />
           <Logo />
         </div>
         <div class="header-menu">

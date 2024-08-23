@@ -21,7 +21,7 @@ const router = createRouter({
           component: () => import('@/views/home/index.vue'),
           meta: {
             title: '首页',
-            icon: 'Home'
+            icon: 'home'
           }
         },
         {
@@ -29,7 +29,7 @@ const router = createRouter({
           name: 'Permission',
           meta: {
             title: '权限管理',
-            icon: 'Permission'
+            icon: 'permission'
           },
           children: [
             {
@@ -38,7 +38,7 @@ const router = createRouter({
               component: () => import('@/views/menu/index.vue'),
               meta: {
                 title: '菜单管理',
-                icon: 'PostTree'
+                icon: 'post-tree'
               }
             },
             {
@@ -47,7 +47,7 @@ const router = createRouter({
               component: () => import('@/views/role/index.vue'),
               meta: {
                 title: '角色管理',
-                icon: 'Role'
+                icon: 'role'
               }
             }
           ]
@@ -58,7 +58,7 @@ const router = createRouter({
           component: () => import('@/views/about/index.vue'),
           meta: {
             title: '关于项目',
-            icon: 'About'
+            icon: 'about'
           }
         }
       ]
