@@ -1,49 +1,49 @@
 const menuList = [
   {
+    parentId: 0,
     id: 1,
     name: 'Home',
     icon: 'home',
     sort: 1,
-    permission: '',
     path: '/home',
     component: 'home/index',
-    status: 1,
+    status: true,
     createTime: '2022-01-01 12:00:00',
     title: '首页'
   },
   {
+    parentId: 0,
     id: 2,
     title: 'Dashboard',
     name: 'Dashboard',
     icon: 'dashboard',
     sort: 2,
-    permission: '',
     path: '/dashboard',
     component: '',
-    status: 1,
+    status: true,
     createTime: '2022-01-01 12:00:00',
     children: [
       {
+        parentId: 2,
         id: 3,
         name: 'Analysis',
         icon: 'analysis',
         sort: 1,
-        permission: '',
         path: '/dashboard/analysis',
         component: 'dashboard/analysis/index',
-        status: 1,
+        status: true,
         createTime: '2022-01-01 12:00:00',
         title: '分析页'
       },
       {
+        parentId: 2,
         id: 4,
         name: 'Workplace',
         icon: 'workplace',
         sort: 2,
-        permission: '',
         path: '/dashboard/workplace',
         component: 'dashboard/workplace/index',
-        status: 0,
+        status: false,
         createTime: '2022-01-01 12:00:00',
         title: '工作台'
       }

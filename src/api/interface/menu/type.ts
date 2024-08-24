@@ -1,5 +1,6 @@
 export interface MenuType {
   id: number
+  parentId: number
   title: string
   name: string
   icon: string
