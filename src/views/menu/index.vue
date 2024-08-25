@@ -2,7 +2,7 @@
 
 import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 import { getMenuListApi } from '@/api/interface/menu'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { useThemeStore } from '@/stores/modules/theme'
 
 const { themeConfig } = useThemeStore()
@@ -205,6 +205,58 @@ if (window.innerWidth < 678) {
   menuDialog.width = 600
 }
 
+const menuTableRef = ref()
+
+// 批量删除菜单
+const batchDeleteMenu = () => {
+  const selectedRows = menuTableRef.value.getSelectionRows()
+  if (selectedRows.length === 0) {
+    ElMessage({
+      message: '请选择要删除的菜单',
+      type: 'warning'
+    })
+    return
+  }
+  ElMessageBox.confirm('确定要删除选中的菜单吗？', '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning'
+  }).then(() => {
+    // 执行删除操作
+    ElMessage({
+      message: '删除成功',
+      type: 'success'
+    })
+  })
+}
+
+// 展开菜单 ID
+const expandMenus = ref([])
+
+// 折叠/展开菜单
+const foldExpandMenuTree = () => {
+  const selectedRowIds = menuTableRef.value.getSelectionRows().map(i => i.id + '')
+
+  if (selectedRowIds.length === 0) {
+    ElMessage({
+      message: '请勾选菜单',
+      type: 'warning'
+    })
+    return
+  }
+
+  // 判断expandMenus.value是否包含selectedRowIds中的元素，如果包含就删除，不包含就添加
+  expandMenus.value = selectedRowIds.reduce((result, id) => {
+    if (result.includes(id)) {
+      // 如果 expandMenus 包含 id，则移除它
+      return result.filter(item => item !== id)
+    } else {
+      // 如果 expandMenus 不包含 id，则添加它
+      return [...result, id]
+    }
+  }, [...expandMenus.value])
+}
+
 onMounted(() => {
   searchMenu()
   updateTableHeight()
@@ -286,11 +338,11 @@ onBeforeUnmount(() => {
               <svg-icon size="18px" name="add" class="mr-1" />
               新增菜单
             </el-button>
-            <el-button type="danger" plain>
+            <el-button type="danger" plain @click="batchDeleteMenu">
               <svg-icon size="18px" name="delete" class="mr-1" />
               批量删除
             </el-button>
-            <el-button plain>
+            <el-button plain @click="foldExpandMenuTree">
               <svg-icon size="18px" name="expand-fold" class="mr-1" />
               展开/折叠
             </el-button>
@@ -303,6 +355,7 @@ onBeforeUnmount(() => {
           :data="menuData"
           table-layout="auto"
           :height="tableHeight"
+          :expand-row-keys="expandMenus"
         >
           <el-table-column type="selection" width="55" />
           <el-table-column fixed prop="title" label="菜单" />
