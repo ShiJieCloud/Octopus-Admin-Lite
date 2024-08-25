@@ -1,7 +1,9 @@
 <script setup lang="ts" name="Role">
 import { useThemeStore } from '@/stores/modules/theme'
-import { reactive, ref, watch } from 'vue'
+import { onMounted, reactive, ref, watch } from 'vue'
 import { getRoleListApi } from '@/api/interface/role'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { getMenuListApi } from '@/api/interface/menu'
 
 const { themeConfig } = useThemeStore()
 
@@ -14,8 +16,12 @@ const searchForm = reactive({
 
 const roleData = ref()
 
+const menuData = ref()
+
 // 搜索表单
 const formContainerRef = ref<HTMLElement | null>(null)
+
+const roleTableRef = ref()
 
 // 表格高度
 const tableHeight = ref<number>(0)
@@ -26,6 +32,22 @@ const pageForm = reactive({
   pageSize: 10,
   currentPage: 1,
   total: 0
+})
+
+const roleDrawerConfig = reactive({
+  visible: false,
+  title: '',
+  size: '500'
+})
+
+const roleForm = ref({
+    id: null,
+    name: '',
+    permissionCode: '',
+    sort: null,
+    status: true,
+    permissionList: '',
+    remark: ''
 })
 
 // 禁用截止日期之前的所有日期
@@ -49,12 +71,52 @@ const searchRole = async () => {
   pageForm.total = roleData.value.length
 }
 
+const getMenuList = async () => {
+  // 调用 getMenuListApi
+  menuData.value = await getMenuListApi(searchForm)
+}
+
 // 重置搜索表单
 const resetSearchForm = () => {
   searchForm.title = ''
   searchForm.status = null
   searchForm.startDate = ''
   searchForm.endDate = ''
+}
+
+// 重置roleDrawer.roleForm
+const resetRoleForm = () => {
+  roleForm.value.id = null
+  roleForm.value.name = ''
+  roleForm.value.permissionCode = ''
+  roleForm.value.sort = null
+  roleForm.value.status = true
+  roleForm.value.permissionList = ''
+  roleForm.value.remark = ''
+  return true
+}
+
+// 新增角色
+const addRole = () => {
+  roleDrawerConfig.title = '新增角色'
+  roleDrawerConfig.visible = true
+  resetRoleForm()
+}
+
+// 修改角色
+const handleUpdateRole = (row: any) => {
+  roleDrawerConfig.title = '修改角色'
+  roleDrawerConfig.visible = true
+  Object.assign(roleForm.value, row)
+}
+
+// 删除角色
+const handleDeleteRole = (roleId: number) => {
+  // 调用删除接口
+  ElMessage({
+    message: '删除成功',
+    type: 'success'
+  })
 }
 
 // 如果屏幕小于1024，tableHeight - formHeight - 100；否则tableHeight - formHeight - 345
@@ -70,10 +132,43 @@ const updateTableHeight = () => {
   }
 }
 
+if (window.innerWidth < 678) {
+  roleDrawerConfig.size = '100%'
+} else {
+  roleDrawerConfig.size = '500'
+}
+
+// 批量删除菜单
+const batchDeleteRole = () => {
+  const selectedRows = roleTableRef.value.getSelectionRows()
+  if (selectedRows.length === 0) {
+    ElMessage({
+      message: '请选择要删除的菜单',
+      type: 'warning'
+    })
+    return
+  }
+  ElMessageBox.confirm('确定要删除选中的角色吗？', '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning'
+  }).then(() => {
+    // 执行删除操作
+    ElMessage({
+      message: '删除成功',
+      type: 'success'
+    })
+  })
+}
+
 watch(formContainerRef, updateTableHeight)
 
 watch(() => themeConfig.showTabs, updateTableHeight)
 
+onMounted(() => {
+  searchRole()
+  getMenuList()
+})
 </script>
 
 <template>
@@ -141,17 +236,17 @@ watch(() => themeConfig.showTabs, updateTableHeight)
       </div>
       <el-card>
         <template #header>
-            <el-button type="primary" plain>
-              <svg-icon size="18px" name="add" class="mr-1" />
-              新增
-            </el-button>
-            <el-button type="danger" plain>
-              <svg-icon size="18px" name="delete" class="mr-1" />
-              删除
-            </el-button>
+          <el-button type="primary" plain @click="addRole">
+            <svg-icon size="18px" name="add" class="mr-1" />
+            新增
+          </el-button>
+          <el-button type="danger" plain @click="batchDeleteRole">
+            <svg-icon size="18px" name="delete" class="mr-1" />
+            删除
+          </el-button>
         </template>
         <el-table
-          ref="menuTableRef"
+          ref="roleTableRef"
           row-key="id"
           highlight-current-row
           :data="roleData"
@@ -178,11 +273,11 @@ watch(() => themeConfig.showTabs, updateTableHeight)
           <el-table-column prop="updateTime" label="修改时间" min-width="180" header-align="center" align="center" />
           <el-table-column label="操作" min-width="200" header-align="center" align="center">
             <template #default="scope">
-              <el-button link size="small" type="primary" >
+              <el-button link size="small" type="primary" @click="handleUpdateRole(scope.row)">
                 <svg-icon size="16px" name="edit" class="mr-1" />
                 修改
               </el-button>
-              <el-popconfirm title="确定要删除吗?" >
+              <el-popconfirm title="确定要删除吗?" @confirm="handleDeleteRole(scope.row.id)">
                 <template #reference>
                   <el-button link size="small" type="danger">
                     <svg-icon size="16px" name="delete" class="mr-1" />
@@ -208,6 +303,55 @@ watch(() => themeConfig.showTabs, updateTableHeight)
         </template>
       </el-card>
     </div>
+    <el-drawer v-model="roleDrawerConfig.visible" :close="resetRoleForm" :size="roleDrawerConfig.size">
+      <template #header>
+        <h4>{{ roleDrawerConfig.title }}</h4>
+      </template>
+      <template #default>
+        <el-form :model="roleForm" label-width="auto">
+          <el-form-item label="角色名称">
+            <el-input v-model="roleForm.name" />
+          </el-form-item>
+          <el-form-item label="权限字符">
+            <el-input v-model="roleForm.permissionCode" />
+          </el-form-item>
+          <el-form-item label="排序">
+            <el-input-number v-model="roleForm.sort" :min="1" :max="10" />
+          </el-form-item>
+          <el-form-item label="状态" prop="status">
+            <el-switch v-model="roleForm.status" />
+          </el-form-item>
+          <el-form-item label="菜单权限" prop="permissionList">
+            <el-tree
+              ref="treeRef"
+              style="max-width: 600px"
+              :data="menuData"
+              show-checkbox
+              default-expand-all
+              node-key="id"
+              highlight-current
+              class="w-full"
+            >
+              <template #default="{ data }">
+                <div class="flex items-center gap-1">
+                  <svg-icon size="16px" :name="data.icon" />
+                  <span>{{ data.title }}</span>
+                </div>
+              </template>
+            </el-tree>
+          </el-form-item>
+          <el-form-item label="备注">
+            <el-input v-model="roleForm.remark" type="textarea" />
+          </el-form-item>
+        </el-form>
+      </template>
+      <template #footer>
+        <div style="flex: auto">
+          <el-button @click="roleDrawerConfig.visible = !roleDrawerConfig.visible">取消</el-button>
+          <el-button type="primary">确认</el-button>
+        </div>
+      </template>
+    </el-drawer>
   </div>
 </template>
 
