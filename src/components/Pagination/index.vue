@@ -127,7 +127,6 @@ onUnmounted(() => {
 .pagination-container {
   float: right; // 默认值
   margin: 15px 0;
-  background-color: #ffffff;
 
   // 若需动态绑定 float
   &.float-left {
