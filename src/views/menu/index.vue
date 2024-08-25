@@ -34,6 +34,7 @@ const pageForm = reactive({
 // 菜单表单
 const menuDialog = reactive({
   visible: false,
+  width: 600,
   title: '添加菜单',
   menuForm: {
     id: null,
@@ -196,6 +197,12 @@ const selectMenuData = computed(() => {
 
 const findItemById = (items, id) => {
   return items.find(item => item.id === id) || items.flatMap(item => findItemById(item.children, id)).find(Boolean)
+}
+
+if (window.innerWidth < 678) {
+  menuDialog.width = 350
+} else {
+  menuDialog.width = 600
 }
 
 onMounted(() => {
@@ -369,7 +376,7 @@ onBeforeUnmount(() => {
     <el-dialog
       v-model="menuDialog.visible"
       :title="menuDialog.title"
-      width="700"
+      :width="menuDialog.width"
       @close="handleCancel"
     >
       <el-form
