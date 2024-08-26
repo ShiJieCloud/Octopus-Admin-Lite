@@ -68,7 +68,7 @@ export const useTabsStore = defineStore(
     // 关闭全部选项卡
     const closeAllTabs = () => {
       tabConfig.cacheTabs = []
-      router.push({ name: 'Home' })
+      router.push({ name: 'home' })
     }
 
     // 关闭右侧选项卡

@@ -2,7 +2,7 @@
 import { useTabsStore } from '@/stores/modules/tabs'
 import { useThemeStore } from '@/stores/modules/theme'
 
-const { tabConfig, closeTab, handleClick } = useTabsStore()
+const { tabConfig, closeTab, closeLeftTabs, closeRightTabs, closeOtherTabs, closeAllTabs, handleClick } = useTabsStore()
 const { themeConfig } = useThemeStore()
 
 </script>
@@ -44,31 +44,31 @@ const { themeConfig } = useThemeStore()
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>
+            <el-dropdown-item @click="closeTab">
               <div class="flex items-center gap-0.5">
                 <svg-icon size="18px" name="close" />
                 关闭当前
               </div>
             </el-dropdown-item>
-            <el-dropdown-item>
+            <el-dropdown-item @click="closeLeftTabs">
               <div class="flex items-center gap-0.5">
                 <svg-icon size="18px" name="arrow-left-double" />
                 关闭左侧
               </div>
             </el-dropdown-item>
-            <el-dropdown-item>
+            <el-dropdown-item @click="closeRightTabs">
               <div class="flex items-center gap-0.5">
                 <svg-icon size="18px" name="arrow-right-double" />
                 关闭右侧
               </div>
             </el-dropdown-item>
-            <el-dropdown-item>
+            <el-dropdown-item @click="closeOtherTabs">
               <div class="flex items-center gap-0.5">
                 <svg-icon size="18px" name="close-others" />
                 关闭其他
               </div>
             </el-dropdown-item>
-            <el-dropdown-item>
+            <el-dropdown-item @click="closeAllTabs">
               <div class="flex items-center gap-0.5">
                 <svg-icon size="18px" name="close-all" />
                 关闭全部
