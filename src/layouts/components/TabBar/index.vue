@@ -40,11 +40,40 @@ const { themeConfig } = useThemeStore()
     <div class="more-button">
       <el-dropdown trigger="click">
         <span>
-          <svg-icon name="More" />
+          <svg-icon name="more" />
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>关闭</el-dropdown-item>
+            <el-dropdown-item>
+              <div class="flex items-center gap-0.5">
+                <svg-icon size="18px" name="close" />
+                关闭当前
+              </div>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <div class="flex items-center gap-0.5">
+                <svg-icon size="18px" name="arrow-left-double" />
+                关闭左侧
+              </div>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <div class="flex items-center gap-0.5">
+                <svg-icon size="18px" name="arrow-right-double" />
+                关闭右侧
+              </div>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <div class="flex items-center gap-0.5">
+                <svg-icon size="18px" name="close-others" />
+                关闭其他
+              </div>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <div class="flex items-center gap-0.5">
+                <svg-icon size="18px" name="close-all" />
+                关闭全部
+              </div>
+            </el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -65,7 +94,7 @@ const { themeConfig } = useThemeStore()
     margin-left: 8px;
     width: calc(100% - 60px);
 
-    .tab-title{
+    .tab-title {
       display: flex;
       align-items: center;
       gap: 8px;
