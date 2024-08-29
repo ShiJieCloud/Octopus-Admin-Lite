@@ -51,6 +51,15 @@ const router = createRouter({
               }
             },
             {
+              path: '/permission/position',
+              name: 'Position',
+              component: () => import('@/views/position/index.vue'),
+              meta: {
+                title: '岗位管理',
+                icon: 'post-card'
+              }
+            },
+            {
               path: '/permission/menu',
               name: 'Menu',
               component: () => import('@/views/menu/index.vue'),

@@ -49,6 +49,14 @@ const props = defineProps<{
             <span>部门管理</span>
           </template>
         </el-menu-item>
+        <el-menu-item index="/permission/position">
+          <el-icon size="22px">
+            <svg-icon name="post-card" />
+          </el-icon>
+          <template #title>
+            <span>岗位管理</span>
+          </template>
+        </el-menu-item>
         <el-menu-item index="/permission/menu">
           <el-icon size="22px">
             <svg-icon name="post-tree" />
