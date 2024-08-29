@@ -19,6 +19,10 @@ const formContainerRef = ref<HTMLElement | null>(null)
 
 const tableHeaderButRef = ref()
 
+const departmentTableRef = ref()
+
+const expandRowKeys = ref([])
+
 const departmentData = ref()
 
 // 表格高度
@@ -40,9 +44,34 @@ const departmentForm = ref({
   remark: ''
 })
 
+// 展开或折叠 expandRowKeys，根据departmentTableRef的getSelectionRows方法获取选中行的id，如果expandRowKeys存在则移除，不存在则添加id
+const handleExpandFold = () => {
+  const selectedRowIds = new Set(departmentTableRef.value.getSelectionRows().map(row => row.id + ''))
+
+  // 如果为空则提示
+  if (selectedRowIds.size === 0) {
+    ElMessage({
+      message: '请选择要展开或折叠的部门',
+      type: 'warning'
+    })
+    return
+  }
+
+  // 创建一个新的 Set 来管理 expandRowKeys
+  const newExpandRowKeys = new Set(expandRowKeys.value)
+
+  // 遍历选中的 ID，根据情况添加或移除
+  selectedRowIds.forEach(id => {
+    newExpandRowKeys.has(id) ? newExpandRowKeys.delete(id) : newExpandRowKeys.add(id)
+  })
+
+  // 更新 expandRowKeys
+  expandRowKeys.value = Array.from(newExpandRowKeys)
+}
+
 const handleOpenDepartmentDialog = (isAdd: boolean, department: any) => {
   departmentDialogConfig.isVisible = true
-  if(isAdd) {
+  if (isAdd) {
     departmentDialogConfig.title = '新增部门'
     departmentForm.value.parentId = department?.parentId
   } else {
@@ -167,7 +196,7 @@ onBeforeUnmount(() => {
                 <svg-icon size="18px" name="delete" class="mr-1" />
                 批量删除
               </el-button>
-              <el-button plain>
+              <el-button plain @click="handleExpandFold">
                 <svg-icon size="18px" name="expand-fold" class="mr-1" />
                 展开/折叠
               </el-button>
@@ -175,12 +204,13 @@ onBeforeUnmount(() => {
           </div>
         </template>
         <el-table
-          ref="menuTableRef"
+          ref="departmentTableRef"
           row-key="id"
           highlight-current-row
           :data="departmentData"
           table-layout="auto"
           :height="tableHeight"
+          :expand-row-keys="expandRowKeys"
         >
           <el-table-column type="selection" width="0" />
           <el-table-column fixed prop="name" width="200" label="部门名称" />
