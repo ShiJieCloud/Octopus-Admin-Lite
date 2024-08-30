@@ -50,6 +50,7 @@ onMounted(() => {
         <el-tree
           ref="departmentTreeRef"
           class="filter-tree"
+          :highlight-current="true"
           :data="departmentData"
           :props="departmentTreeProps"
           :filter-node-method="filterDepartment"
