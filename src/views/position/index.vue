@@ -66,7 +66,7 @@ onMounted(() => {
   @apply flex gap-3 h-full w-full;
 
   .filter-container {
-    @apply rounded h-full w-full p-3;
+    @apply rounded h-full w-full p-3 shadow;
     display: none;
     background-color: var(--el-bg-color);
 
@@ -86,7 +86,7 @@ onMounted(() => {
   }
 
   .post-container {
-    @apply flex-1 rounded p-3;
+    @apply flex-1 rounded p-3 shadow;
     transition: transform 0.3s;
     background-color: var(--el-bg-color);
   }
