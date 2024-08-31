@@ -10,10 +10,7 @@ const positionsData = [
   { departmentId: 3, id: 'P007', name: '网络管理员', code: 'NW001', status: true, roles: ['网络维护', '系统管理'], remark: '负责公司网络和系统的维护', sort: 7, createTime: '2024-08-01T12:00:00Z', updateTime: '2024-08-15T12:00:00Z' },
   { departmentId: 3, id: 'P008', name: '安全分析师', code: 'SA001', status: true, roles: ['安全监控', '漏洞分析'], remark: '负责信息系统的安全分析和防护', sort: 8, createTime: '2024-08-01T12:00:00Z', updateTime: '2024-08-15T12:00:00Z' },
   { departmentId: 5, id: 'P009', name: '销售经理', code: 'SM001', status: true, roles: ['销售策略', '客户开发'], remark: '负责销售策略制定和客户开发', sort: 9, createTime: '2024-08-01T12:00:00Z', updateTime: '2024-08-15T12:00:00Z' },
-  { departmentId: 5, id: 'P010', name: '产品设计师', code: 'PD001', status: true, roles: ['产品设计', '原型制作'], remark: '负责产品的设计和原型制作', sort: 10, createTime: '2024-08-01T12:00:00Z', updateTime: '2024-08-15T12:00:00Z' },
-  { departmentId: 6, id: 'P011', name: '法务顾问', code: 'LW001', status: true, roles: ['法律咨询', '合同审查'], remark: '提供法律咨询和合同审查服务', sort: 11, createTime: '2024-08-01T12:00:00Z', updateTime: '2024-08-15T12:00:00Z' },
-  { departmentId: 6, id: 'P012', name: '行政助理', code: 'AA001', status: true, roles: ['行政支持', '文档管理'], remark: '负责行政支持和文档管理', sort: 12, createTime: '2024-08-01T12:00:00Z', updateTime: '2024-08-15T12:00:00Z' }
-
+  { departmentId: 5, id: 'P010', name: '产品设计师', code: 'PD001', status: true, roles: ['产品设计', '原型制作'], remark: '负责产品的设计和原型制作', sort: 10, createTime: '2024-08-01T12:00:00Z', updateTime: '2024-08-15T12:00:00Z' }
   // 更多岗位数据...
 ]
 

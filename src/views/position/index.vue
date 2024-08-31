@@ -30,13 +30,14 @@ const queryPositionForm = reactive({
 })
 
 const positionForm = reactive({
-  departmentId: '',
+  departmentId: null,
   id: '',
   name: '',
   code: '',
   status: true,
   roles: [],
-  remark: ''
+  remark: '',
+  sort: null
 })
 
 // 分页表单
@@ -54,6 +55,38 @@ const formContainerRef = ref<HTMLElement | null>(null)
 
 const tableHeaderButRef = ref()
 
+const positionDialogConfig = reactive({
+  visible: false,
+  title: '新增岗位',
+  width: 600
+})
+
+const resetPositionForm = () => {
+  Object.keys(positionForm).forEach(key => {
+    positionForm[key] = null
+  })
+  return true
+}
+
+const handleAddPosition = (departmentId:number) => {
+  positionDialogConfig.visible = true
+  positionDialogConfig.title = '新增岗位'
+  resetPositionForm()
+  positionForm.departmentId = departmentId
+}
+
+const handleUpdatePosition = (row: any) => {
+  positionDialogConfig.visible = true
+  positionDialogConfig.title = '编辑岗位'
+  positionForm.id = row.id
+  positionForm.name = row.name
+  positionForm.code = row.code
+  positionForm.status = row.status
+  positionForm.departmentId = row.departmentId
+  positionForm.remark = row.remark
+  positionForm.sort = row.sort
+}
+
 // 如果屏幕小于1024，tableHeight - formHeight - 100；否则tableHeight - formHeight - 345
 const updateTableHeight = () => {
 
@@ -68,6 +101,12 @@ const updateTableHeight = () => {
     }
     tableHeight.value = window.innerHeight - formHeight - headerButHeight - padding
   }
+}
+
+if (window.innerWidth < 678) {
+  positionDialogConfig.width = 350
+} else {
+  positionDialogConfig.width = 600
 }
 
 watch(formContainerRef, updateTableHeight)
@@ -202,7 +241,7 @@ onBeforeUnmount(() => {
           <template #header>
             <div ref="tableHeaderButRef">
               <el-space wrap>
-                <el-button type="primary" plain>
+                <el-button type="primary" plain @click="handleAddPosition(null)">
                   <svg-icon size="18px" name="add" class="mr-1" />
                   新增
                 </el-button>
@@ -241,11 +280,11 @@ onBeforeUnmount(() => {
             <el-table-column prop="createTime" label="创建时间" min-width="180" header-align="center" align="center" />
             <el-table-column label="操作" fixed="right" width="230" header-align="center" align="center">
               <template #default="scope">
-                <el-button link size="small" type="primary">
+                <el-button link size="small" type="primary" @click="handleUpdatePosition(scope.row)">
                   <svg-icon size="16px" name="edit" class="mr-1" />
                   修改
                 </el-button>
-                <el-button link size="small" type="primary">
+                <el-button link size="small" type="primary" @click="handleAddPosition(scope.row.departmentId)">
                   <svg-icon size="16px" name="add" class="mr-1" />
                   新增
                 </el-button>
@@ -278,6 +317,49 @@ onBeforeUnmount(() => {
         </el-card>
       </div>
     </div>
+    <el-dialog
+      v-model="positionDialogConfig.visible"
+      :title="positionDialogConfig.title"
+      :width="positionDialogConfig.width"
+    >
+      <el-form :model="positionForm" label-width="auto">
+        <el-form-item label="部门名称" prop="departmentId">
+          <el-tree-select
+            v-model="positionForm.departmentId"
+            :data="departmentData"
+            :render-after-expand="false"
+            :props="departmentTreeProps"
+            :check-strictly="true"
+          />
+        </el-form-item>
+        <el-form-item label="岗位名称">
+          <el-input v-model="positionForm.name" />
+        </el-form-item>
+        <el-form-item label="排序" prop="sort">
+          <el-input-number v-model="positionForm.sort" :min="1" :max="10" />
+        </el-form-item>
+        <el-form-item label="岗位状态" prop="status">
+          <el-switch
+            v-model="positionForm.status"
+            inline-prompt
+            style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
+            active-text="启用"
+            inactive-text="禁用"
+          />
+        </el-form-item>
+        <el-form-item label="备注">
+          <el-input v-model="positionForm.remark" type="textarea" />
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button @click="positionDialogConfig.visible = false">取消</el-button>
+          <el-button type="primary" @click="positionDialogConfig.visible = false">
+            确认
+          </el-button>
+        </div>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
