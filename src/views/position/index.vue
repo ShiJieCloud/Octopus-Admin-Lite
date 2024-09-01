@@ -55,10 +55,35 @@ const formContainerRef = ref<HTMLElement | null>(null)
 
 const tableHeaderButRef = ref()
 
+const departmentPath = ref()
+
 const positionDialogConfig = reactive({
   visible: false,
   title: '新增岗位',
   width: 600
+})
+
+function buildDepartmentPaths(departments, parentPath = '') {
+  const result = {}
+
+  departments.forEach(department => {
+    // Set currentPath directly
+    const currentPath = parentPath ? `${parentPath}/${department.name}` : department.name
+
+    // Add the current department with its path
+    result[department.id] = { id: department.id, name: department.name, path: currentPath }
+
+    // Recursively process children with the updated path
+    if (department.children?.length) {
+      Object.assign(result, buildDepartmentPaths(department.children, currentPath))
+    }
+  })
+
+  return result
+}
+
+watch(departmentData,() => {
+  departmentPath.value = buildDepartmentPaths(departmentData.value)
 })
 
 const resetPositionForm = () => {
@@ -68,11 +93,10 @@ const resetPositionForm = () => {
   return true
 }
 
-const handleAddPosition = (departmentId:number) => {
+const handleAddPosition = () => {
   positionDialogConfig.visible = true
   positionDialogConfig.title = '新增岗位'
   resetPositionForm()
-  positionForm.departmentId = departmentId
 }
 
 const handleUpdatePosition = (row: any) => {
@@ -182,7 +206,11 @@ onBeforeUnmount(() => {
                     :data="departmentData"
                     :render-after-expand="false"
                     :props="departmentTreeProps"
-                  />
+                  >
+                    <template #label="{ value }">
+                      <span>{{ departmentPath[value].path }}</span>
+                    </template>
+                  </el-tree-select>
                 </el-form-item>
               </el-col>
               <el-col :xs="24" :sm="12" :lg="8" :xl="5">
@@ -241,7 +269,7 @@ onBeforeUnmount(() => {
           <template #header>
             <div ref="tableHeaderButRef">
               <el-space wrap>
-                <el-button type="primary" plain @click="handleAddPosition(null)">
+                <el-button type="primary" plain @click="handleAddPosition">
                   <svg-icon size="18px" name="add" class="mr-1" />
                   新增
                 </el-button>
@@ -278,15 +306,11 @@ onBeforeUnmount(() => {
               </template>
             </el-table-column>
             <el-table-column prop="createTime" label="创建时间" min-width="180" header-align="center" align="center" />
-            <el-table-column label="操作" fixed="right" width="230" header-align="center" align="center">
+            <el-table-column label="操作" fixed="right" width="150" header-align="center" align="center">
               <template #default="scope">
                 <el-button link size="small" type="primary" @click="handleUpdatePosition(scope.row)">
                   <svg-icon size="16px" name="edit" class="mr-1" />
                   修改
-                </el-button>
-                <el-button link size="small" type="primary" @click="handleAddPosition(scope.row.departmentId)">
-                  <svg-icon size="16px" name="add" class="mr-1" />
-                  新增
                 </el-button>
                 <el-popconfirm
                   title="确定要删除吗?"
@@ -330,7 +354,11 @@ onBeforeUnmount(() => {
             :render-after-expand="false"
             :props="departmentTreeProps"
             :check-strictly="true"
-          />
+          >
+            <template #label="{ value }">
+              <span>{{ departmentPath[value].path }}</span>
+            </template>
+          </el-tree-select>
         </el-form-item>
         <el-form-item label="岗位名称">
           <el-input v-model="positionForm.name" />
@@ -368,7 +396,7 @@ onBeforeUnmount(() => {
   @apply flex gap-3 h-full w-full;
 
   .filter-container {
-    @apply rounded h-full w-full p-3 drop-shadow-md;
+    @apply rounded h-full w-full p-3 shadow;
     display: none;
     background-color: var(--el-bg-color);
 
@@ -420,7 +448,7 @@ onBeforeUnmount(() => {
     }
 
     .position-container {
-      width: calc(100% - var(--os-layout-department-width));
+      width: calc(100% - var(--os-layout-department-width) - 12px);
       transition: transform 0.3s;
     }
   }
