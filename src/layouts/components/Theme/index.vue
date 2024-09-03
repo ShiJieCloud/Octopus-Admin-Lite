@@ -177,7 +177,7 @@ onMounted(() => {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 15px 15px 0;
+  padding: 12px 12px 0;
 
   .layout-item {
     position: relative;
@@ -186,24 +186,24 @@ onMounted(() => {
     height: 70px;
     padding: 6px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 0 5px 1px var(--el-border-color-dark);
     transition: all 0.2s;
 
     .layout-dark {
       background-color: var(--el-color-primary);
-      border-radius: 3px;
+      border-radius: 5px;
     }
 
     .layout-light {
       background-color: var(--el-color-primary-light-5);
-      border-radius: 3px;
+      border-radius: 5px;
     }
 
     .layout-content {
       background-color: var(--el-color-primary-light-8);
       border: 1px dashed var(--el-color-primary);
-      border-radius: 3px;
+      border-radius: 5px;
     }
 
     .select-layout {
@@ -236,14 +236,10 @@ onMounted(() => {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      width: 72%;
-
-      .layout-light {
-        height: 20%;
-      }
+      width: 75%;
 
       .layout-content {
-        height: 67%;
+        height: 100%;
       }
     }
   }
@@ -259,7 +255,7 @@ onMounted(() => {
     }
 
     .layout-content {
-      height: 67%;
+      height: 70%;
     }
   }
 }
