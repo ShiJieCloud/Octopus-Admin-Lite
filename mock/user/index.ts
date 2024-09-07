@@ -12,7 +12,9 @@ const userList = [
     'status': true,
     'remark': '普通员工',
     'createTime': '2024-01-10 13:00',
-    'updateTime': '2024-08-25 09:45'
+    'updateTime': '2024-08-25 09:45',
+    'username': 'zhangwei',
+    'password': '12345678'
   },
   {
     'id': 2,
@@ -27,7 +29,9 @@ const userList = [
     'status': true,
     'remark': '部门主管',
     'createTime': '2024-01-10 13:00',
-    'updateTime': '2024-08-25 09:45'
+    'updateTime': '2024-08-25 09:45',
+    'username': 'lina',
+    'password': '12345678'
   },
   {
     'id': 3,
@@ -42,7 +46,9 @@ const userList = [
     'status': true,
     'remark': '项目经理',
     'createTime': '2024-01-10 13:00',
-    'updateTime': '2024-08-25 09:45'
+    'updateTime': '2024-08-25 09:45',
+    'username': 'wangqiang',
+    'password': '12345678'
   },
   {
     'id': 4,
@@ -57,7 +63,9 @@ const userList = [
     'status': true,
     'remark': '行政助理',
     'createTime': '2024-01-10 13:00',
-    'updateTime': '2024-08-25 09:45'
+    'updateTime': '2024-08-25 09:45',
+    'username': 'zhaomin',
+    'password': '12345678'
   },
   {
     'id': 5,
@@ -72,7 +80,9 @@ const userList = [
     'status': true,
     'remark': '人力资源专员',
     'createTime': '2024-01-10 13:00',
-    'updateTime': '2024-08-25 09:45'
+    'updateTime': '2024-08-25 09:45',
+    'username': 'liuyang',
+    'password': '12345678'
   },
   {
     'id': 6,
@@ -87,7 +97,9 @@ const userList = [
     'status': true,
     'remark': '财务经理',
     'createTime': '2024-01-10 13:00',
-    'updateTime': '2024-08-25 09:45'
+    'updateTime': '2024-08-25 09:45',
+    'username': 'chenjie',
+    'password': '12345678'
   },
   {
     'id': 7,
@@ -102,7 +114,9 @@ const userList = [
     'status': true,
     'remark': '技术支持工程师',
     'createTime': '2024-01-10 13:00',
-    'updateTime': '2024-08-25 09:45'
+    'updateTime': '2024-08-25 09:45',
+    'username': 'sunpeng',
+    'password': '12345678'
   },
   {
     'id': 8,
@@ -117,7 +131,9 @@ const userList = [
     'status': true,
     'remark': '市场推广专员',
     'createTime': '2024-01-10 13:00',
-    'updateTime': '2024-08-25 09:45'
+    'updateTime': '2024-08-25 09:45',
+    'username': 'wangli',
+    'password': '12345678'
   },
   {
     'id': 9,
@@ -132,7 +148,9 @@ const userList = [
     'status': true,
     'remark': '产品经理',
     'createTime': '2024-01-10 13:00',
-    'updateTime': '2024-08-25 09:45'
+    'updateTime': '2024-08-25 09:45',
+    'username': 'liutao',
+    'password': '12345678'
   },
   {
     'id': 10,
@@ -147,7 +165,9 @@ const userList = [
     'status': true,
     'remark': '运营主管',
     'createTime': '2024-01-10 13:00',
-    'updateTime': '2024-08-25 09:45'
+    'updateTime': '2024-08-25 09:45',
+    'username': 'zhouyu',
+    'password': '12345678'
   }
 ]
 
@@ -164,6 +184,29 @@ export default [
         data: userList,
         msg: '查询成功'
       }
+    }
+  },
+  // 用户登录假接口
+  {
+    url:'/api/user/login',    // 请求地址
+    method:'post',
+    response:({ body }) => {
+
+      // 获取请求体鞋带过来的用户名与密码
+      const { username,password } = body
+
+      // 调用获取用户信息的函数，用于判断是否有此用户
+      const checkUser = userList.find(
+        (item) => item.username === username && item.password === password)
+
+      // 返回失败信息
+      if(!checkUser){
+        return { code:201 , data :{ },msg:'账号或密码不正确' }
+      }
+
+      // 返回成功信息
+      const { id } = checkUser
+      return { code :200 ,data:{ token:id },msg:'登陆成功' }
     }
   }
 ]

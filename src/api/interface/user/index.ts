@@ -6,3 +6,8 @@ import { UserType } from '@/api/interface/user/type'
 export const getUserListApi = (): Promise<Result<UserType[]>> => {
   return http.get('/user/list')
 }
+
+// 用户登录
+export const userLoginApi = (data: { username: string; password: string }): Promise<Result<any>> => {
+  return http.post('/user/login', data)
+}
