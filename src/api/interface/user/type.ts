@@ -11,3 +11,7 @@ export interface UserType {
   status: boolean;
   remark: string;
 }
+
+export interface UserToken{
+  token: string
+}

@@ -1,10 +1,10 @@
 <!--https://vueuse.nodejs.cn/integrations/useQRCode-->
 <script setup lang="ts">
-import { useLoginStore } from '@/stores/modules/login'
+import { useUserStore } from '@/stores/modules/user'
 import { useQRCode } from '@vueuse/integrations/useQRCode'
 import { onMounted, onUnmounted, ref } from 'vue'
 
-const { setLoginMode } = useLoginStore()
+const { setLoginMode } = useUserStore()
 
 const text = ref('https://zsjie.blog.csdn.net/?type=blog') // 初始二维码内容
 const qrCodeUrl = useQRCode(text, {

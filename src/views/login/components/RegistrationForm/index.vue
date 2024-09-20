@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
 import { reactive } from 'vue'
-import { useLoginStore } from '@/stores/modules/login'
+import { useUserStore } from '@/stores/modules/user'
 
-const { setLoginMode } = useLoginStore()
+const { setLoginMode, toggleVisibleUserAgreement } = useUserStore()
 
 const registrationForm = reactive({
   username: '',
@@ -109,7 +109,7 @@ const startCountdown = () => {
           <el-checkbox v-model="registrationForm.agreeTerms">
             <div class="flex items-center gap-1 text-md">
               <span>我已仔细阅读并接受</span>
-              <el-link type="primary" :underline="false" href="javascript:;">《用户协议》</el-link>
+              <el-link type="primary" :underline="false" href="javascript:;" @click="toggleVisibleUserAgreement">《用户协议》</el-link>
             </div>
           </el-checkbox>
         </div>

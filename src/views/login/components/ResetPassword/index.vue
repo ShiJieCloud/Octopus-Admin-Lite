@@ -5,9 +5,13 @@ import { useUserStore } from '@/stores/modules/user'
 
 const { setLoginMode } = useUserStore()
 
-const emailLoginForm = reactive({
-  email: '',
-  verifyCode: ''
+const resetPasswordForm = reactive({
+  username: '',
+  password: '',
+  confirmPassword: '',
+  phone: '',
+  verifyCode: '',
+  agreeTerms: false
 })
 
 // 响应式数据
@@ -58,18 +62,25 @@ const startCountdown = () => {
       label-width="auto"
       status-icon
       size="large"
-      v-model="emailLoginForm"
+      v-model="resetPasswordForm"
     >
-      <el-form-item prop="email">
-        <el-input placeholder="邮箱" v-model="emailLoginForm.email">
+      <el-form-item prop="username">
+        <el-input placeholder="用户名" clearable v-model="resetPasswordForm.username">
           <template #prefix>
-            <svg-icon name="email" />
+            <svg-icon name="user" />
+          </template>
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="phone">
+        <el-input placeholder="手机号码" v-model="resetPasswordForm.phone">
+          <template #prefix>
+            <svg-icon name="phone" />
           </template>
         </el-input>
       </el-form-item>
       <el-form-item prop="verifyCode">
         <div class="flex justify-between gap-3">
-          <el-input placeholder="验证码" maxlength="6" v-model="emailLoginForm.verifyCode">
+          <el-input placeholder="短信验证码" maxlength="6" v-model="resetPasswordForm.verifyCode">
             <template #prefix>
               <svg-icon name="verify-code" />
             </template>
@@ -79,9 +90,23 @@ const startCountdown = () => {
           </el-button>
         </div>
       </el-form-item>
+      <el-form-item prop="password">
+        <el-input placeholder="密码" type="password" show-password clearable v-model="resetPasswordForm.password">
+          <template #prefix>
+            <svg-icon name="password" />
+          </template>
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="password">
+        <el-input placeholder="确认密码" type="password" show-password clearable v-model="resetPasswordForm.confirmPassword">
+          <template #prefix>
+            <svg-icon name="password" />
+          </template>
+        </el-input>
+      </el-form-item>
       <el-form-item>
         <el-button class="w-full" type="primary" size="default">
-          登录
+          确认重置
         </el-button>
       </el-form-item>
       <el-form-item>

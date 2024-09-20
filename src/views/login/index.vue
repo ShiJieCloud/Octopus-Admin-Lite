@@ -4,23 +4,25 @@ import ClassicLogin from './components/ClassicLogin/index.vue'
 import EmailLogin from './components/EmailLogin/index.vue'
 import QRCodeLogin from './components/QRCodeLogin/index.vue'
 import Registration from './components/RegistrationForm/index.vue'
+import ResetPassword from './components/ResetPassword/index.vue'
+import UserAgreement from './components/UserAgreement/index.vue'
+import { useUserStore } from '@/stores/modules/user'
 
 import { computed } from 'vue'
-
-import { useLoginStore } from '@/stores/modules/login'
 
 const loginModeMap = {
   phone: PhoneLogin,
   classic: ClassicLogin,
   email: EmailLogin,
   qrCode: QRCodeLogin,
-  registration: Registration
+  registration: Registration,
+  resetPassword: ResetPassword
 }
 
-const loginStore = useLoginStore()
+const { loginConfig, setLoginMode } = useUserStore()
 
 // 直接使用 loginMode 来创建计算属性
-const mode = computed(() => loginModeMap[loginStore.loginMode])
+const mode = computed(() => loginModeMap[loginConfig.loginMode])
 
 const app_title = import.meta.env.VITE_APP_TITLE
 </script>
@@ -41,17 +43,17 @@ const app_title = import.meta.env.VITE_APP_TITLE
               <component :is="mode" />
             </transition>
 
-            <div v-show="loginStore.loginMode === 'classic'" class="flex items-center justify-between">
-              <el-button @click="loginStore.setLoginMode('phone')">手机登录</el-button>
-              <el-button @click="loginStore.setLoginMode('qrCode')">二维码登录</el-button>
-              <el-button @click="loginStore.setLoginMode('email')">邮箱登录</el-button>
+            <div v-show="loginConfig.loginMode === 'classic'" class="flex items-center justify-between">
+              <el-button @click="setLoginMode('phone')">手机登录</el-button>
+              <el-button @click="setLoginMode('qrCode')">二维码登录</el-button>
+              <el-button @click="setLoginMode('email')">邮箱登录</el-button>
             </div>
 
-            <el-divider v-show="loginStore.loginMode == 'classic'">
+            <el-divider v-show="loginConfig.loginMode == 'classic'">
               <span class="text-xs text-gray-400">第三方登录</span>
             </el-divider>
 
-            <div v-show="loginStore.loginMode == 'classic'" class="flex items-center justify-between">
+            <div v-show="loginConfig.loginMode == 'classic'" class="flex items-center justify-between">
               <el-link :underline="false" href="/register">
                 <svg-icon name="qq" />
               </el-link>
@@ -72,6 +74,7 @@ const app_title = import.meta.env.VITE_APP_TITLE
         </div>
       </el-col>
     </el-row>
+    <UserAgreement />
   </div>
 </template>
 <style scoped lang="postcss">

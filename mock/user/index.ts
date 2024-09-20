@@ -190,6 +190,7 @@ export default [
   {
     url:'/api/user/login',    // 请求地址
     method:'post',
+    timeout: 1000,
     response:({ body }) => {
 
       // 获取请求体鞋带过来的用户名与密码
@@ -201,7 +202,7 @@ export default [
 
       // 返回失败信息
       if(!checkUser){
-        return { code:201 , data :{ },msg:'账号或密码不正确' }
+        return { code:201 , data :{},msg:'账号或密码不正确' }
       }
 
       // 返回成功信息

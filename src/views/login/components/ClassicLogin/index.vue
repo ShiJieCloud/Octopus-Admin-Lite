@@ -1,10 +1,9 @@
 <script setup lang="ts">
 
 import { reactive } from 'vue'
-import { useLoginStore } from '@/stores/modules/login'
-import { userLoginApi } from '@/api/interface/user'
+import { useUserStore } from '@/stores/modules/user'
 
-const { setLoginMode } = useLoginStore()
+const { loginConfig, setLoginMode, loginByUsername } = useUserStore()
 
 const loginForm = reactive({
   username: 'zhangwei',
@@ -13,9 +12,8 @@ const loginForm = reactive({
   rememberMe: false
 })
 
-const handleLogin = async () => {
-  const u = await userLoginApi(loginForm)
-  console.log(u)
+const handleLogin = () => {
+  loginByUsername(loginForm)
 }
 
 </script>
@@ -72,11 +70,11 @@ const handleLogin = async () => {
         </div>
       </el-form-item>
       <el-form-item>
-        <el-button class="w-full" type="primary" size="default" @click="handleLogin">
+        <el-button class="w-full" type="primary" size="default" :loading="loginConfig.isLoading" @click="handleLogin">
           登录
         </el-button>
         <div class="register-link">
-          <el-link :underline="false" type="primary" href="/register">
+          <el-link :underline="false" type="primary" href="javascript:;" @click="setLoginMode('resetPassword')">
             忘记密码?
           </el-link>
           <el-link class="text-md" :underline="false" type="primary" href="javascript:;" @click="setLoginMode('registration')">

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
 import { reactive } from 'vue'
-import { useLoginStore } from '@/stores/modules/login'
+import { useUserStore } from '@/stores/modules/user'
 
-const { setLoginMode } = useLoginStore()
+const { setLoginMode } = useUserStore()
 
 const phoneLoginForm = reactive({
   phone: '',

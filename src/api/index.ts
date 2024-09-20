@@ -21,41 +21,42 @@ http.interceptors.request.use(
   }
 )
 
+// 错误信息映射对象
+const errorMessages = {
+  401: '未登录，请先登录',
+  403: '权限不足，请联系管理员',
+  404: '请求地址不存在',
+  500: '服务器内部错误'
+}
+
+// 错误处理函数
+const handleError = (state) => {
+  const message = errorMessages[state] || '发生了错误'
+  ElMessage.error(message)
+  return Promise.reject(new Error(message))
+}
+
 // 添加响应拦截器
 http.interceptors.response.use(
   (response) => {
-    // 处理响应数据
-    const { code, msg, data} = response.data
-    if (code !== 200) {
-      ElMessage.error(msg)
-      return Promise.reject(msg)
+    const { code, msg, data } = response.data
+
+    if (code === 200) {
+      ElMessage.success(msg || '请求成功')
+      return data
     }
-    ElMessage.success(msg)
-    return data
+
+    // 处理非成功状态码
+    return handleResponseError(code, msg)
   },
   (error) => {
-    const state = error.state
-    if (state === 401) {
-      // 处理未登录状态
-      ElMessage.error('未登录，请先登录')
-    }
-
-    if (state === 403) {
-      // 处理权限不足状态
-      ElMessage.error('权限不足，请联系管理员')
-    }
-
-    if (state === 404) {
-      // 处理请求地址不存在状态
-      ElMessage.error('请求地址不存在')
-    }
-
-    if (state === 500) {
-      // 处理服务器内部错误状态
-      ElMessage.error('服务器内部错误')
-    }
-
-    // 其他错误处理逻辑
-    return Promise.reject(error)
+    // 处理请求错误
+    return handleError(error.response ? error.response.status : null)
   }
 )
+
+const handleResponseError = (code, msg) => {
+  ElMessage.error(msg || '请求失败')
+  return Promise.reject(new Error(msg || '请求失败'))
+}
+
