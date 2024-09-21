@@ -188,26 +188,26 @@ export default [
   },
   // 用户登录假接口
   {
-    url:'/api/user/login',    // 请求地址
-    method:'post',
+    url: '/api/user/login',    // 请求地址
+    method: 'post',
     timeout: 1000,
-    response:({ body }) => {
+    response: ({ body }) => {
 
       // 获取请求体鞋带过来的用户名与密码
-      const { username,password } = body
+      const { username, password } = body
 
       // 调用获取用户信息的函数，用于判断是否有此用户
       const checkUser = userList.find(
         (item) => item.username === username && item.password === password)
 
       // 返回失败信息
-      if(!checkUser){
-        return { code:201 , data :{},msg:'账号或密码不正确' }
+      if (!checkUser) {
+        return { code: 201, data: {}, msg: '账号或密码不正确' }
       }
 
       // 返回成功信息
       const { id } = checkUser
-      return { code :200 ,data:{ token:id },msg:'登陆成功' }
+      return { code: 200, data: { token: id, userInfo: checkUser }, msg: '登陆成功' }
     }
   }
 ]

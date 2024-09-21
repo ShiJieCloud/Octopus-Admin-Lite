@@ -1,16 +1,14 @@
 import { defineStore } from 'pinia'
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { userLoginApi } from '@/api/interface/user'
 import router from '@/router'
-import LocalStorageUtil from '@/utils/LocalStorage/LocalStorageUtil'
 
 export const useUserStore = defineStore(
   'user',
   () => {
+    const userToken = ref()
     // 用户信息
-    const userInfo = reactive({
-      token: LocalStorageUtil.getItem<string>('token') || ''
-    })
+    const userInfo = ref()
 
     const loginConfig = reactive({
       loginMode: 'classic',
@@ -36,8 +34,8 @@ export const useUserStore = defineStore(
       loginConfig.isLoading = true
       await userLoginApi(data)
         .then((data) => {
-          userInfo.token = data.token
-          LocalStorageUtil.setItem<string>('token', data.token)
+          userInfo.value = data.userInfo
+          userToken.value = data.token
           // 登录成功后跳转到命名路由 home
           router.push({ name: 'home' })
         })
@@ -53,14 +51,14 @@ export const useUserStore = defineStore(
 
     // 退出登录
     const logout = () => {
-      userInfo.token = ''
-      // 移除 token
-      LocalStorageUtil.removeItem('token')
+      userInfo.value = null
+      userToken.value = null
       // 跳转到登录页
       router.push({ name: 'login' })
     }
 
     return {
+      userToken,
       userInfo,
       loginConfig,
       setLoginMode,

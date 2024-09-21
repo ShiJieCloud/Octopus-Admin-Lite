@@ -1,4 +1,4 @@
-export interface UserType {
+export interface UserInfo {
   id: number;
   name: string;
   phone: string;
@@ -12,6 +12,7 @@ export interface UserType {
   remark: string;
 }
 
-export interface UserToken{
-  token: string
+export interface UserLoginResult {
+  token: string;
+  userInfo: UserInfo;
 }

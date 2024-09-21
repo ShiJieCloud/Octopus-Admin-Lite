@@ -111,8 +111,8 @@ router.beforeEach((to,from) => {
   NProgress.start()
 
   // 检查用户是否登录
-  const userStore = useUserStore()
-  const isAuthenticated = !!userStore.userInfo.token
+  const { userToken } = useUserStore()
+  const isAuthenticated = !!userToken
 
   // 如果路由需要认证且用户未登录，则跳转到登录页面
   if (to.path === LOGIN_URL) {
