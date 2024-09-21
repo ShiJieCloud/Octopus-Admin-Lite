@@ -12,6 +12,8 @@ import { useThemeStore } from '@/stores/modules/theme'
 import { useUserStore } from '@/stores/modules/user'
 
 const { toggleThemeConfig, themeConfig } = useThemeStore()
+const { userInfo } = useUserStore()
+
 const { logout } = useUserStore()
 const locales = reactive([
   {
@@ -82,8 +84,10 @@ const handleLogout = () => {
             <!-- 用户信息 -->
             <el-dropdown>
               <div class="flex items-center gap-1">
-                <el-tag type="primary">Admin</el-tag>
-                <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
+                <el-tag type="primary">{{ userInfo.name }}</el-tag>
+                <el-avatar :src="userInfo.avatar" @error="true">
+                  <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png" />
+                </el-avatar>
               </div>
               <template #dropdown>
                 <el-dropdown-menu>

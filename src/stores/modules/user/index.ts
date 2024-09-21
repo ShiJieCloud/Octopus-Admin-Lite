@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
 import { userLoginApi } from '@/api/interface/user'
 import router from '@/router'
-import { UsernameLoginParams } from '@/api/interface/user/type'
+import { UserInfo, UsernameLoginParams } from '@/api/interface/user/type'
 
 export const useUserStore = defineStore(
   'user',
@@ -10,7 +10,7 @@ export const useUserStore = defineStore(
     // 用户token
     const userToken = ref()
     // 用户信息
-    const userInfo = ref()
+    const userInfo = ref<UserInfo>()
 
     const loginConfig = reactive({
       loginMode: 'classic',
