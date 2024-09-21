@@ -40,7 +40,7 @@ export const useUserStore = defineStore(
           userInfo.value = data.userInfo
           userToken.value = data.token
           // 登录成功后跳转到命名路由 home
-          router.push({ name: 'home' })
+          router.push({ name: 'Home' })
         })
         .catch((err) => {
           console.error('登录失败:', err.message)
@@ -57,7 +57,7 @@ export const useUserStore = defineStore(
       userInfo.value = null
       userToken.value = null
       // 跳转到登录页
-      router.push({ name: 'login' })
+      router.push({ name: 'Login' })
     }
 
     return {

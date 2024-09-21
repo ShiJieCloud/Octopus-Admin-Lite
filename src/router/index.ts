@@ -15,12 +15,12 @@ const router = createRouter({
     {
       path: '/',
       redirect: 'home',
-      name: 'layout',
+      name: 'Layout',
       component: () => import('@/layouts/index.vue'),
       children: [
         {
           path: '/home',
-          name: 'home',
+          name: 'Home',
           component: () => import('@/views/home/index.vue'),
           meta: {
             title: '首页',
@@ -50,7 +50,7 @@ const router = createRouter({
               component: () => import('@/views/department/index.vue'),
               meta: {
                 title: '部门管理',
-                icon: 'post-tree'
+                icon: 'department'
               }
             },
             {
@@ -68,7 +68,7 @@ const router = createRouter({
               component: () => import('@/views/menu/index.vue'),
               meta: {
                 title: '菜单管理',
-                icon: 'post-tree'
+                icon: 'hamburger'
               }
             },
             {
@@ -84,7 +84,7 @@ const router = createRouter({
         },
         {
           path: '/about',
-          name: 'about',
+          name: 'About',
           component: () => import('@/views/about/index.vue'),
           meta: {
             title: '关于项目',
@@ -95,7 +95,7 @@ const router = createRouter({
     },
     {
       path: '/login',
-      name: 'login',
+      name: 'Login',
       component: () => import('@/views/login/index.vue'),
       meta: {
         title: '登录',

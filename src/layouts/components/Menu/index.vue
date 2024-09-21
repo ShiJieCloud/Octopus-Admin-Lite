@@ -43,7 +43,7 @@ const props = defineProps<{
         </el-menu-item>
         <el-menu-item index="/permission/department">
           <el-icon size="22px">
-            <svg-icon name="post-tree" />
+            <svg-icon name="department" />
           </el-icon>
           <template #title>
             <span>部门管理</span>
@@ -59,7 +59,7 @@ const props = defineProps<{
         </el-menu-item>
         <el-menu-item index="/permission/menu">
           <el-icon size="22px">
-            <svg-icon name="post-tree" />
+            <svg-icon name="hamburger" />
           </el-icon>
           <template #title>
             <span>菜单管理</span>
