@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { reactive, watch } from 'vue'
 import { ThemeConfig } from './types'
-import { ElMessage } from 'element-plus'
 import { getDarkColor, getLightColor } from '@/utils/Color'
 
 // theme store
@@ -13,8 +12,8 @@ export const useThemeStore = defineStore(
       darkTheme: false,
       grayTheme: false,
       layoutMode: 'classic',
-      themeColor: '#409eff',
-      predefineColors: ['#409eff'],
+      themeColor: '#409EFF',
+      predefineColors: [],
       menuCollapse: false,
       showBreadcrumbIcon: true,
       showBreadcrumb: true,
@@ -48,11 +47,9 @@ export const useThemeStore = defineStore(
 
     // 添加预定义颜色
     function addPredefineColor(color: string) {
-      console.log('color', color)
       const predefineColors = themeConfig.predefineColors
       // 查找元素的索引
       const index = predefineColors.indexOf(color)
-
       if (index !== -1) {
         // 使用 splice 方法删除该元素
         predefineColors.splice(index, 1)
@@ -66,9 +63,9 @@ export const useThemeStore = defineStore(
     // 修改主题颜色
     const changeThemeColor = (color: string) => {
       if (!color) {
-        color = '#409eff'
-        ElMessage({ type: 'success', message: '主题颜色已重置' })
+        color = '#409EFF'
       }
+      themeConfig.themeColor = color
       addPredefineColor(color)
       // 计算主题颜色变化
       document.documentElement.style.setProperty('--el-color-primary', color)
