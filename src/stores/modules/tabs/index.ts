@@ -37,7 +37,7 @@ export const useTabsStore = defineStore(
           router.push({ name: tabConfig.cacheTabs[newIndex].name })
         } else {
           // 如果没有剩余的标签页了，可以在这里处理跳转到默认页或者其他逻辑
-          router.push({ name: 'home' }) // 例如跳转到首页
+          router.push({ name: 'Home' }) // 例如跳转到首页
         }
       }
     }
@@ -68,7 +68,7 @@ export const useTabsStore = defineStore(
     // 关闭全部选项卡
     const closeAllTabs = () => {
       tabConfig.cacheTabs = []
-      router.push({ name: 'home' })
+      router.push({ name: 'Home' })
     }
 
     // 关闭右侧选项卡
