@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import LocalStorageUtil from '@/utils/LocalStorage/LocalStorageUtil'
 
 // 创建axios实例
 export const http = axios.create({
@@ -14,6 +15,8 @@ export const http = axios.create({
 // 添加请求拦截器
 http.interceptors.request.use(
   (config) => {
+    const token = LocalStorageUtil.getItem<string>('token') || ''
+    config.headers.Authorization = `Bearer ${token}`
     return config
   },
   (error) => {

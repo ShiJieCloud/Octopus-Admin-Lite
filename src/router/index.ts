@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useTabsStore } from '@/stores/modules/tabs'
 
 import NProgress from 'nprogress'
+import { useUserStore } from '@/stores/modules/user'
+
+const LOGIN_URL = '/login'
 
 // 禁用右上角的旋转动画
 NProgress.configure({ showSpinner: false })
@@ -103,10 +106,25 @@ const router = createRouter({
 })
 
 // 添加路由守卫来控制 NProgress
-router.beforeEach( () => {
+router.beforeEach((to,from) => {
   // 开启进度条动画
   NProgress.start()
-  return true
+
+  // 检查用户是否登录
+  const userStore = useUserStore()
+  const isAuthenticated = !!userStore.userInfo.token
+
+  // 如果路由需要认证且用户未登录，则跳转到登录页面
+  if (to.path === LOGIN_URL) {
+    if (isAuthenticated) {
+      return from.fullPath
+    }
+    return true
+  } else {
+    if (!isAuthenticated) {
+      return { path: LOGIN_URL }
+    }
+  }
 })
 
 router.afterEach((to) => {
