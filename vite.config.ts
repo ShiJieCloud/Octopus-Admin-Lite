@@ -47,8 +47,9 @@ export default defineConfig(({ command,mode }: ConfigEnv): UserConfig => {
       vueJsx(),
       setupVuePlugin(),
       viteMockServe({
-        mockPath: 'mock',
-        enable: command === 'serve'
+        mockPath: 'mock'
+        // 在开发环境使用Mock模拟数据
+        // enable: command === 'serve'
       }),
       // 使用 svg 图标
       createSvgIconsPlugin({
