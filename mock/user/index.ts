@@ -172,42 +172,43 @@ const userList = [
 ]
 
 // 获取角色列表接口
+// 获取用户列表的响应
+const getUserListResponse = () => {
+  return {
+    code: 200,
+    data: userList,
+    msg: '查询成功'
+  }
+}
+
+// 用户登录的响应
+const loginResponse = ({ body }) => {
+  const { username, password } = body
+
+  const checkUser = userList.find(
+    (item) => item.username === username && item.password === password
+  )
+
+  if (!checkUser) {
+    return { code: 201, data: {}, msg: '账号或密码不正确' }
+  }
+
+  const { id } = checkUser
+  return { code: 200, data: { token: id, userInfo: checkUser }, msg: '登陆成功' }
+}
+
+// 导出接口配置
 export default [
   {
-    //获取菜单
     url: '/api/user/list',
     timeout: 200,
     method: 'get',
-    response: () => {
-      return {
-        code: 200,
-        data: userList,
-        msg: '查询成功'
-      }
-    }
+    response: getUserListResponse
   },
-  // 用户登录假接口
   {
-    url: '/api/user/login',    // 请求地址
+    url: '/api/user/login',
     method: 'post',
     timeout: 1000,
-    response: ({ body }) => {
-
-      // 获取请求体鞋带过来的用户名与密码
-      const { username, password } = body
-
-      // 调用获取用户信息的函数，用于判断是否有此用户
-      const checkUser = userList.find(
-        (item) => item.username === username && item.password === password)
-
-      // 返回失败信息
-      if (!checkUser) {
-        return { code: 201, data: {}, msg: '账号或密码不正确' }
-      }
-
-      // 返回成功信息
-      const { id } = checkUser
-      return { code: 200, data: { token: id, userInfo: checkUser }, msg: '登陆成功' }
-    }
+    response: loginResponse
   }
 ]

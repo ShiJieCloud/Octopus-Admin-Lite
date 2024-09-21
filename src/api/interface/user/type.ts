@@ -12,6 +12,13 @@ export interface UserInfo {
   remark: string;
 }
 
+export interface UsernameLoginParams {
+  username:string,
+  password:string,
+  verificationCode:string,
+  rememberMe:boolean
+}
+
 export interface UserLoginResult {
   token: string;
   userInfo: UserInfo;

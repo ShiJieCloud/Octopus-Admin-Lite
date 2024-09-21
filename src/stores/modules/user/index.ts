@@ -2,10 +2,12 @@ import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
 import { userLoginApi } from '@/api/interface/user'
 import router from '@/router'
+import { UsernameLoginParams } from '@/api/interface/user/type'
 
 export const useUserStore = defineStore(
   'user',
   () => {
+    // 用户token
     const userToken = ref()
     // 用户信息
     const userInfo = ref()
@@ -30,9 +32,10 @@ export const useUserStore = defineStore(
       loginConfig.isVisiblePrivacyPolicy = !loginConfig.isVisiblePrivacyPolicy
     }
 
-    const loginByUsername = async (data: { username: string; password: string }) => {
+    // 用户名密码登录
+    const loginByUsername = async (params: UsernameLoginParams) => {
       loginConfig.isLoading = true
-      await userLoginApi(data)
+      await userLoginApi(params)
         .then((data) => {
           userInfo.value = data.userInfo
           userToken.value = data.token
