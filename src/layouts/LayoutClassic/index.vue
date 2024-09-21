@@ -9,8 +9,10 @@ import { reactive } from 'vue'
 
 import { fullScreen } from '@/utils/FullScreen'
 import { useThemeStore } from '@/stores/modules/theme'
+import { useUserStore } from '@/stores/modules/user'
 
 const { toggleThemeConfig, themeConfig } = useThemeStore()
+const { logout } = useUserStore()
 const locales = reactive([
   {
     label: '中文',
@@ -21,6 +23,10 @@ const locales = reactive([
     value: 'en-US'
   }
 ])
+
+const handleLogout = () => {
+  logout()
+}
 </script>
 
 <template>
@@ -91,7 +97,7 @@ const locales = reactive([
                   </el-dropdown-item>
                   <el-dropdown-item command="logout">
                     <template #default>
-                      <div class="flex items-center gap-1">
+                      <div class="flex items-center gap-1" @click="handleLogout">
                         <svg-icon name="logout" />
                         <span>退出登录</span>
                       </div>

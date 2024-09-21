@@ -51,13 +51,23 @@ export const useUserStore = defineStore(
         )
     }
 
+    // 退出登录
+    const logout = () => {
+      userInfo.token = ''
+      // 移除 token
+      LocalStorageUtil.removeItem('token')
+      // 跳转到登录页
+      router.push({ name: 'login' })
+    }
+
     return {
       userInfo,
       loginConfig,
       setLoginMode,
       toggleVisibleUserAgreement,
       toggleVisiblePrivacyPolicy,
-      loginByUsername
+      loginByUsername,
+      logout
     }
   },
   {
