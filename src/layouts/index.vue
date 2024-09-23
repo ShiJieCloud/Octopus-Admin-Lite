@@ -4,6 +4,7 @@ import LayoutClassic from '@/layouts/LayoutClassic/index.vue'
 import LayoutHorizontal from '@/layouts/LayoutHorizontal/index.vue'
 import LayoutResponsive from '@/layouts/LayoutResponsive/index.vue'
 import Theme from '@/layouts/components/Theme/index.vue'
+import LockScreen from '@/layouts/components/LockScreen/index.vue'
 
 import { useThemeStore } from '@/stores/modules/theme'
 
@@ -49,6 +50,7 @@ onUnmounted(() => {
 
 <template>
   <!-- 根据 mode 的值渲染不同的布局样式 -->
+  <LockScreen v-if="themeConfig.lockScreen" />
   <component :is="mode" />
   <Theme />
 </template>

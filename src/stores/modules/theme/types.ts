@@ -23,4 +23,6 @@ export interface ThemeConfig {
   showTabs: boolean;
   // 标签页图标显示
   showTabsIcon: boolean;
+  // 是否显示锁屏
+  lockScreen: boolean;
 }

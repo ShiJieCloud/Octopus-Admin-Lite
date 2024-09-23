@@ -11,7 +11,7 @@ import { fullScreen } from '@/utils/FullScreen'
 import { useThemeStore } from '@/stores/modules/theme'
 import { useUserStore } from '@/stores/modules/user'
 
-const { toggleThemeConfig, themeConfig } = useThemeStore()
+const { toggleThemeConfig, themeConfig, toggleLockScreen } = useThemeStore()
 const { userInfo } = useUserStore()
 
 const { logout } = useUserStore()
@@ -73,7 +73,7 @@ const handleLogout = () => {
 
             <!-- 锁屏按钮 -->
             <el-tooltip content="锁屏" placement="bottom">
-              <svg-icon class="cursor-pointer" name="lock" />
+              <svg-icon class="cursor-pointer" name="lock" @click="toggleLockScreen"/>
             </el-tooltip>
 
             <!-- 全屏按钮 -->

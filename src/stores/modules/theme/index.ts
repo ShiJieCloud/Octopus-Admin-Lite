@@ -18,12 +18,18 @@ export const useThemeStore = defineStore(
       showBreadcrumbIcon: true,
       showBreadcrumb: true,
       showTabs: true,
-      showTabsIcon: true
+      showTabsIcon: true,
+      lockScreen: false
     })
 
     // 切换显示状态的方法
     const toggleThemeConfig = () => {
       themeConfig.showTheme = !themeConfig.showTheme
+    }
+
+    // 切换锁屏状态
+    const toggleLockScreen = () => {
+      themeConfig.lockScreen = !themeConfig.lockScreen
     }
 
     // 黑暗主题切换
@@ -82,6 +88,7 @@ export const useThemeStore = defineStore(
     return {
       themeConfig,
       toggleThemeConfig,
+      toggleLockScreen,
       changeThemeColor
     }
   },
